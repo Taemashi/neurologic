@@ -303,7 +303,19 @@
       box.classList.toggle("open", v); tbtn.setAttribute("aria-expanded", v);
       if (v) { var sel = pop.querySelector('[aria-checked="true"]') || pop.querySelector(".opt"); setTimeout(function () { sel && sel.focus(); }, 30); }
     }
-    tbtn.addEventListener("click", function () { open(!box.classList.contains("open")); });
+    tbtn.addEventListener("click", function () { open(!box.classList.contains("open")); stopHint(); });
+
+    /* aviso de 10 s: solo en computador (puntero fino y pantalla ancha) */
+    var hintTimer = null;
+    function stopHint() { box.classList.remove("hint"); if (hintTimer) { clearTimeout(hintTimer); hintTimer = null; } }
+    var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (fine && window.innerWidth >= 900) {
+      var bubble = document.createElement("div"); bubble.className = "thint"; bubble.setAttribute("aria-hidden", "true");
+      bubble.innerHTML = "<b>Elige tu estilo</b>Hacemos tu página con el diseño que quieras. Pruébalo aquí.";
+      box.appendChild(bubble);
+      bubble.addEventListener("click", function () { open(true); stopHint(); });
+      setTimeout(function () { box.classList.add("hint"); hintTimer = setTimeout(stopHint, 10000); }, 700);
+    }
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && box.classList.contains("open")) { open(false); tbtn.focus(); }
       if (box.classList.contains("open") && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
@@ -325,6 +337,7 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
 
 
 

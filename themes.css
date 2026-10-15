@@ -254,3 +254,15 @@ html[data-theme="hud"] .tags span::before, html[data-theme="hud"] .filters butto
 
 @media (max-width: 720px) { .ar-hud, .hu-tele { display: none; } }
 
+
+/* ---------- aviso inicial del botón de estilos (solo escritorio, 10 s) ---------- */
+#tm .thint { position: absolute; left: 0; bottom: 66px; width: 270px; padding: 14px 16px; border-radius: var(--rad-s); background: var(--ink); color: var(--bg); font: 600 .9rem/1.35 var(--body); text-transform: none; letter-spacing: 0; box-shadow: var(--shadow); opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .4s, transform .4s; }
+#tm .thint b { display: block; font: var(--dw) 1rem var(--display); text-transform: var(--dt); letter-spacing: var(--dl); margin-bottom: 4px; }
+#tm .thint::after { content: ""; position: absolute; left: 26px; bottom: -8px; width: 16px; height: 16px; background: var(--ink); transform: rotate(45deg); }
+#tm.hint .thint { opacity: 1; transform: none; pointer-events: auto; cursor: pointer; animation: thbob 1.6s ease-in-out infinite; }
+#tm.open .thint { opacity: 0; pointer-events: none; animation: none; }
+#tm.hint .tbtn { animation: tmpulse 1.5s ease-out infinite; }
+@keyframes tmpulse { 0% { box-shadow: 0 0 0 0 var(--blue), var(--shadow); } 70% { box-shadow: 0 0 0 18px rgba(0,0,0,0), var(--shadow); } 100% { box-shadow: 0 0 0 0 rgba(0,0,0,0), var(--shadow); } }
+@keyframes thbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@media (prefers-reduced-motion: reduce) { #tm.hint .tbtn, #tm.hint .thint { animation: none; } }
+@media (max-width: 899px), (hover: none) { #tm .thint { display: none; } }
