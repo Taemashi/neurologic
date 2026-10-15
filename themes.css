@@ -58,31 +58,36 @@ html[data-theme="chrome"] .plan .pp b { font-size: .95rem; }
 .ch-s { left: 0; top: 0; will-change: transform; background: linear-gradient(135deg, #fff, #9AAECF 45%, #16234F 55%, #BFD0EA); clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); }
 
 /* ==========================================================================
-   2. ARCADE PIXEL
+   2. ARCADE PIXEL (v2: pantalla de máquina arcade CRT)
    ========================================================================== */
 html[data-theme="arcade"] {
-  --logo-fill: #FFE600;
-  --bg: #0B0B1E; --ink: #F4F4FF; --mut: #9B9BD6; --teal-ink: #FFE600; --blue: #FFE600;
-  --grad: linear-gradient(#FFE600, #FFE600); --on: #0B0B1E; --glass-a: #14143A; --glass-b: #14143A; --rim: #F4F4FF;
-  --shadow: 6px 6px 0 #FF2E9A; --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 4px;
-  --rad: 0; --rad-card: 0; --rad-s: 0; --rad-btn: 0; --rad-chip: 0; --surf: #14143A; --surf2: #14143A; --btn-shadow: 4px 4px 0 #00E5FF;
-  --display: 'Press Start 2P', monospace; --body: 'Pixelify Sans', sans-serif; --mono: 'Pixelify Sans', monospace;
-  --dw: 400; --dt: none; --dl: 0; --dlh: 1.4; --h1: clamp(1.1rem, 2.7vw, 2rem); --h2: 1.05rem; --fs: 18px;
-  --price-grad: linear-gradient(#FFE600, #FFE600); --fx: none; --tick-bg: #FFE600; --tick-on: #0B0B1E;
+  --bg: #0A0A14; --ink: #EAFBEF; --mut: #8FBF9F; --teal-ink: #39FF88; --blue: #39FF88; --logo-fill: #39FF88;
+  --grad: linear-gradient(#39FF88, #39FF88); --on: #04140A; --glass-a: #101226; --glass-b: #101226; --rim: #39FF88;
+  --shadow: 6px 6px 0 #FF3D5A; --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 3px;
+  --rad: 0; --rad-card: 0; --rad-s: 0; --rad-btn: 0; --rad-chip: 0; --surf: #101226; --surf2: #101226; --btn-shadow: 4px 4px 0 #FFD23F;
+  --display: 'Silkscreen', monospace; --body: 'VT323', monospace; --mono: 'VT323', monospace;
+  --dw: 700; --dt: uppercase; --dl: .02em; --dlh: 1.12; --h1: clamp(1.7rem, 4.2vw, 3.2rem); --h2: 1.5rem; --fs: 22px;
+  --price-grad: linear-gradient(#FFD23F, #FFD23F); --fx: none; --tick-bg: #39FF88; --tick-on: #04140A;
   color-scheme: dark;
 }
-html[data-theme="arcade"] .body h3, html[data-theme="arcade"] .plan h3, html[data-theme="arcade"] .lb-bar h3 { font-size: .72rem; line-height: 1.5; }
-html[data-theme="arcade"] .plan .pp b { font-size: .8rem; line-height: 1.5; }
-html[data-theme="arcade"] .btn { font-family: 'Press Start 2P', monospace; font-size: .6rem; padding: 15px 16px; }
-html[data-theme="arcade"] .filters button, html[data-theme="arcade"] .tags span { border-width: 2px; }
-html[data-theme="arcade"] .hero .eb { font-size: .9rem; }
-html[data-theme="arcade"] .hero h1 { max-width: 15em; }
+html[data-theme="arcade"] body { line-height: 1.3; }
+html[data-theme="arcade"] h1, html[data-theme="arcade"] h2 { text-shadow: 3px 3px 0 #FF3D5A; }
+html[data-theme="arcade"] .hero h1 { max-width: 12em; }
+html[data-theme="arcade"] .hero .eb, html[data-theme="arcade"] .plan .pn, html[data-theme="arcade"] .plan .pp small { font-size: 1rem; letter-spacing: .1em; }
+html[data-theme="arcade"] .body h3, html[data-theme="arcade"] .plan h3, html[data-theme="arcade"] .lb-bar h3 { font-size: 1rem; line-height: 1.3; }
+html[data-theme="arcade"] .plan .pp b { font-size: 1.05rem; line-height: 1.3; }
+html[data-theme="arcade"] .btn { font-family: 'Silkscreen', monospace; font-weight: 700; font-size: .85rem; padding: 12px 20px; text-transform: uppercase; letter-spacing: .06em; }
 html[data-theme="arcade"] .btn:hover { transform: translate(-2px, -2px); }
+html[data-theme="arcade"] .filters button, html[data-theme="arcade"] .tags span { border-width: 2px; font-size: 1rem; }
+html[data-theme="arcade"] .hero p, html[data-theme="arcade"] .sub, html[data-theme="arcade"] .body p, html[data-theme="arcade"] .plan p { font-size: 1.12rem; }
 .ar-st { left: 0; right: 0; top: -100px; bottom: -100px; will-change: background-position; }
-.ar-coin { left: 0; top: 0; width: 24px; height: 24px; background: #FFE600; box-shadow: 0 0 0 4px #FF9B1F; will-change: transform; }
-.ar-heart { left: 0; top: 0; width: 12px; height: 12px; background: #FF2E9A; box-shadow: 18px 0 #FF2E9A, 36px 0 #FF2E9A; will-change: transform; }
-.ar-ic { left: 0; top: 0; width: 70px; aspect-ratio: 357/392; background: #00E5FF; -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; filter: drop-shadow(4px 4px 0 #FF2E9A); will-change: transform; opacity: .9; }
-.ar-hud { left: 14px; bottom: 80px; font: 10px/2 'Press Start 2P', monospace; color: #FFE600; text-shadow: 2px 2px 0 #FF2E9A; white-space: pre; }
+.ar-inv { left: 0; top: 0; will-change: transform; }
+.ar-inv svg { position: absolute; display: block; }
+.ar-ship { left: 0; top: 0; width: 56px; aspect-ratio: 357/392; background: #39FF88; -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; filter: drop-shadow(3px 3px 0 #FF3D5A); will-change: transform; }
+.ar-bul { left: 0; top: 0; width: 5px; height: 16px; background: #FFD23F; box-shadow: 0 0 8px #FFD23F; will-change: transform; }
+.ar-crt { inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.2) 0 1px, transparent 1px 3px), radial-gradient(ellipse at 50% 45%, transparent 58%, rgba(0,0,0,.6) 100%); }
+.ar-hud { left: 14px; bottom: 80px; font: 20px/1.2 'VT323', monospace; color: #FFD23F; text-shadow: 2px 2px 0 #FF3D5A; white-space: pre; letter-spacing: .06em; }
+.ar-coin { right: 16px; top: 46px; font: 18px 'Silkscreen', monospace; color: #39FF88; text-shadow: 2px 2px 0 #04140A; }
 
 /* ==========================================================================
    3. RISO PRINT
@@ -248,3 +253,4 @@ html[data-theme="hud"] .tags span::before, html[data-theme="hud"] .filters butto
 
 
 @media (max-width: 720px) { .ar-hud, .hu-tele { display: none; } }
+

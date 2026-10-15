@@ -12,7 +12,7 @@
     { id: "chrome", name: "Chrome Y2K", tag: "Cromo y burbujas", sw: ["#DDE4EF", "#2F6BFF", "#0F1B3D"], meta: "#DDE4EF", sep: " • ",
       fonts: "family=Syncopate:wght@400;700&family=Exo+2:wght@400;600;700&family=Share+Tech+Mono" },
     { id: "arcade", name: "Arcade Pixel", tag: "Videojuego 8-bit", sw: ["#0B0B1E", "#FFE600", "#FF2E9A"], meta: "#0B0B1E", sep: " ■ ",
-      fonts: "family=Press+Start+2P&family=Pixelify+Sans:wght@400;600" },
+      fonts: "family=Silkscreen:wght@400;700&family=VT323" },
     { id: "riso", name: "Riso Print", tag: "Impresión a dos tintas", sw: ["#F3F2EE", "#1B2BD6", "#FF5A1F"], meta: "#F3F2EE", sep: " / ",
       fonts: "family=Bricolage+Grotesque:wght@400;600;800&family=Space+Mono:wght@400;700" },
     { id: "enterprise", name: "Enterprise", tag: "Corporativo sobrio", sw: ["#F3F5F9", "#0B5FFF", "#0F1B33"], meta: "#F3F5F9", sep: " · ",
@@ -70,21 +70,40 @@
   };
 
   B.arcade = function (bg, fg) {
-    var layers = [[38, .12, "#fff", .5], [57, .26, "#00E5FF", .45], [83, .5, "#FF2E9A", .55]].map(function (c) {
-      var e = div("ar-st", bg); e.style.backgroundImage = "radial-gradient(" + c[2] + " 1.6px, transparent 2.2px)"; e.style.backgroundSize = c[0] + "px " + c[0] + "px"; e.style.opacity = c[3]; return { e: e, c: c };
-    });
-    var coins = [[.1, .3, .7], [.88, .6, .55], [.5, .85, .9], [.3, .1, .4]].map(function (c) { return { e: div("ar-coin", bg), c: c }; });
-    var hearts = [[.04, .9, .3], [.93, .15, .45]].map(function (c) { return { e: div("ar-heart", bg), c: c }; });
-    var ic = div("ar-ic", bg);
-    var hud = div("ar-hud", fg), last = "";
+    var ST = div("ar-st", bg);
+    ST.style.backgroundImage = "radial-gradient(#fff 1.4px, transparent 2px), radial-gradient(#39FF88 1.2px, transparent 1.8px)";
+    ST.style.backgroundSize = "70px 70px, 110px 110px"; ST.style.opacity = ".4";
+    var A = ["00100000100", "00010001000", "00111111100", "01101110110", "11111111111", "10111111101", "10100000101", "00011011000"];
+    var Sq = ["00011000", "00111100", "01111110", "11011011", "11111111", "00100100", "01011010", "10100101"];
+    function sprite(map, color, px) {
+      var w = map[0].length * px, h = map.length * px, r = "";
+      for (var y = 0; y < map.length; y++) for (var x = 0; x < map[y].length; x++) if (map[y][x] === "1") r += '<rect x="' + x * px + '" y="' + y * px + '" width="' + px + '" height="' + px + '"/>';
+      return '<svg width="' + w + '" height="' + h + '" shape-rendering="crispEdges" fill="' + color + '">' + r + "</svg>";
+    }
+    var px = clamp(Math.round(window.innerWidth / 300), 3, 5), cols = window.innerWidth < 700 ? 5 : 8, rows = 4, cellW = 14 * px + 18, cellH = 8 * px + 18;
+    var form = div("ar-inv", bg), colors = ["#FF3D5A", "#FFD23F", "#39FF88", "#39FF88"];
+    for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+      var useA = r % 2 === 0, map = useA ? A : Sq, wpx = map[0].length * px, hpx = map.length * px;
+      var holder = document.createElement("div"); holder.innerHTML = sprite(map, colors[r], px);
+      var svg = holder.firstChild; svg.style.left = (c * cellW + (cellW - 18 - wpx) / 2) + "px"; svg.style.top = (r * cellH + (cellH - 18 - hpx) / 2) + "px"; form.appendChild(svg);
+    }
+    var formW = cols * cellW;
+    var ship = div("ar-ship", bg), buls = [div("ar-bul", bg), div("ar-bul", bg), div("ar-bul", bg)];
+    div("ar-crt", fg); var hud = div("ar-hud", fg), last = "";
     return function (S) {
-      var H = S.h;
-      layers.forEach(function (l) { l.e.style.backgroundPosition = "0 " + (-(S.y * l.c[1]) % l.c[0]) + "px"; });
-      coins.forEach(function (c, i) { var y = mod(c.c[1] * H - S.y * c.c[2], H + 60) - 30; c.e.style.transform = "translate3d(" + (c.c[0] * S.w) + "px," + y + "px,0) scale(" + (1 + .15 * Math.sin(S.t * 4 + i)) + ")"; });
-      hearts.forEach(function (c) { var y = mod(c.c[1] * H - S.y * c.c[2], H + 40) - 20; c.e.style.transform = "translate3d(" + (c.c[0] * S.w) + "px," + y + "px,0)"; });
-      var iy = mod(.5 * H - S.y * .6, H + 120) - 60;
-      ic.style.transform = "translate3d(" + (S.w * .9 + Math.sin(S.y / 140) * 26) + "px," + iy + "px,0) rotate(" + (Math.sin(S.y / 200) * 14) + "deg)";
-      var txt = "SCORE " + pad(Math.floor(S.y * 3.7), 6) + "\nHI    099999\nNIVEL " + pad(1 + Math.floor(S.p * 8), 2);
+      var H = S.h, W = S.w;
+      ST.style.backgroundPosition = "0 " + (-S.y * .12 % 70) + "px, 0 " + (-S.y * .25 % 110) + "px";
+      var sway = Math.round((Math.sin(S.y / 240) * W * .16 + Math.sin(S.t * .5) * 10) / 12) * 12;
+      var fx = (W - formW) / 2 + sway, fy = 108 + S.p * H * .2 + (Math.floor(S.t * 2) % 2) * 6;
+      form.style.transform = "translate3d(" + fx + "px," + fy + "px,0)";
+      var sx = W * .5 + Math.sin(S.y / 210) * W * .3 - 28, sy = H - 150;
+      ship.style.transform = "translate3d(" + sx + "px," + sy + "px,0)";
+      buls.forEach(function (b, i) {
+        var ph = mod(S.t * 1.1 + i / 3, 1);
+        b.style.opacity = ph < .96 ? 1 : 0;
+        b.style.transform = "translate3d(" + (sx + 26) + "px," + (sy - ph * (H * .85)) + "px,0)";
+      });
+      var txt = "1UP  " + pad(Math.floor(S.y * 3.7), 6) + "\nHI   099999\nNIVEL " + pad(1 + Math.floor(S.p * 8), 2);
       if (txt !== last) { hud.textContent = txt; last = txt; }
     };
   };
@@ -306,4 +325,6 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+
 
