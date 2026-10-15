@@ -1,0 +1,236 @@
+/* ==========================================================================
+   TEMAS. El tema principal (Aura Frost) está en index.html.
+   Cada tema cambia variables en <html data-theme="...">.
+   ========================================================================== */
+
+/* ---------- selector de temas ---------- */
+#tm { position: fixed; left: 20px; bottom: 20px; z-index: 60; font-family: var(--body); }
+#tm .tbtn { display: flex; align-items: center; gap: 10px; padding: 12px 18px 12px 14px; border-radius: var(--rad-btn); border: var(--bw) var(--bs) var(--rim); background: var(--surf2); color: var(--ink); font: 700 .9rem var(--body); cursor: pointer; box-shadow: var(--shadow); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); transition: transform .2s; }
+#tm .tbtn:hover { transform: translateY(-2px); }
+#tm .sq { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 20px; height: 20px; }
+#tm .sq i { display: block; border-radius: 3px; }
+#tm .sq i:nth-child(1) { background: var(--blue); } #tm .sq i:nth-child(2) { background: var(--ink); }
+#tm .sq i:nth-child(3) { background: var(--teal-ink); } #tm .sq i:nth-child(4) { background: var(--mut); }
+#tm .tpop { position: absolute; left: 0; bottom: 62px; width: min(360px, calc(100vw - 40px)); max-height: min(70vh, 560px); overflow: auto; padding: 12px; border-radius: var(--rad); border: var(--bw) var(--bs) var(--rim); background: var(--bg); box-shadow: var(--shadow); opacity: 0; transform: translateY(10px) scale(.97); transform-origin: bottom left; pointer-events: none; transition: opacity .2s, transform .2s; }
+#tm.open .tpop { opacity: 1; transform: none; pointer-events: auto; }
+#tm .thead { font: 500 .72rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mut); padding: 4px 8px 10px; }
+#tm .opt { width: 100%; display: grid; grid-template-columns: 54px 1fr auto; gap: 12px; align-items: center; text-align: left; padding: 9px 10px; border-radius: calc(var(--rad-s) * .8); border: var(--bw) var(--bs) transparent; background: transparent; color: var(--ink); cursor: pointer; font: inherit; transition: background .15s; }
+#tm .opt:hover { background: var(--surf); }
+#tm .opt[aria-checked="true"] { background: var(--surf2); border-color: var(--rim); }
+#tm .sw3 { display: flex; height: 34px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(128,128,128,.3); }
+#tm .sw3 i { flex: 1; display: block; }
+#tm .opt b { display: block; font: 700 .95rem var(--body); text-transform: none; letter-spacing: 0; }
+#tm .opt small { display: block; font: 500 .72rem var(--mono); color: var(--mut); letter-spacing: .03em; text-transform: none; }
+#tm .opt em { font: 700 .66rem var(--mono); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-ink); }
+@media (max-width: 480px) { #tm { left: 14px; bottom: 14px; } #tm .tbtn span.lbl { display: none; } #tm .tbtn { padding: 14px; } }
+
+/* ---------- cinta superior y capas de fondo ---------- */
+.tick { display: none; position: sticky; top: 0; z-index: 45; height: 34px; overflow: hidden; white-space: nowrap; align-items: center; background: var(--tick-bg, var(--blue)); color: var(--tick-on, var(--on)); font: 700 12px var(--mono); letter-spacing: .16em; text-transform: uppercase; border-bottom: var(--bw) var(--bs) var(--rim); }
+html[data-theme] .tick { display: flex; }
+.tick .track { display: inline-flex; animation: tkmove 46s linear infinite; will-change: transform; }
+.tick .track span { padding-left: 18px; }
+@keyframes tkmove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+#bgx, #fgx { position: fixed; inset: 0; overflow: hidden; pointer-events: none; display: none; }
+#bgx { z-index: 0; } #fgx { z-index: 44; }
+html[data-theme] #bgx, html[data-theme] #fgx { display: block; }
+html[data-theme] #bg3d { display: none; }
+#bgx > *, #fgx > * { position: absolute; }
+@media (prefers-reduced-motion: reduce) { .tick .track { animation: none; } }
+
+/* ==========================================================================
+   1. CHROME Y2K
+   ========================================================================== */
+html[data-theme="chrome"] {
+  --bg: #DDE4EF; --ink: #0F1B3D; --mut: #4A5878; --teal-ink: #2F6BFF; --blue: #2F6BFF;
+  --grad: linear-gradient(180deg, #78AAFF, #2F6BFF 55%, #1B47C9); --on: #fff;
+  --glass-a: #FFFFFF; --glass-b: #CFD9EA; --rim: #9FB0CC; --shadow: 0 14px 32px rgba(40,70,140,.28);
+  --glass-inset: inset 0 2px 0 #fff; --blur: 4px; --rad: 26px; --rad-card: 24px; --rad-s: 18px; --rad-btn: 999px; --rad-chip: 999px;
+  --surf: rgba(255,255,255,.9); --surf2: #fff; --btn-shadow: 0 8px 18px rgba(47,107,255,.35), inset 0 2px 0 rgba(255,255,255,.55);
+  --display: 'Syncopate', sans-serif; --body: 'Exo 2', sans-serif; --mono: 'Share Tech Mono', monospace;
+  --dw: 700; --dt: uppercase; --dl: .02em; --dlh: 1.12; --h1: clamp(1.5rem, 3.7vw, 2.8rem); --h2: 1.3rem;
+  --price-grad: linear-gradient(120deg, #1B47C9, #2F6BFF); --fx: linear-gradient(180deg, #E9EFF9, #CFD9EA);
+  --tick-bg: linear-gradient(180deg, #78AAFF, #2F6BFF 60%, #1B47C9);
+}
+html[data-theme="chrome"] .body h3, html[data-theme="chrome"] .plan h3 { font-size: .9rem; }
+html[data-theme="chrome"] .plan .pp b { font-size: .95rem; }
+.ch-b { left: 0; top: 0; border-radius: 50%; will-change: transform; background: radial-gradient(circle at 30% 24%, #fff 0 9%, rgba(255,255,255,.25) 10% 28%, transparent 29%), linear-gradient(160deg, var(--c1, #9CD8FF), var(--c2, #2F6BFF) 72%); box-shadow: inset -10px -14px 26px rgba(0,30,120,.4), 0 18px 30px rgba(47,107,255,.35); opacity: .92; }
+.ch-s { left: 0; top: 0; will-change: transform; background: linear-gradient(135deg, #fff, #9AAECF 45%, #16234F 55%, #BFD0EA); clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); }
+
+/* ==========================================================================
+   2. ARCADE PIXEL
+   ========================================================================== */
+html[data-theme="arcade"] {
+  --bg: #0B0B1E; --ink: #F4F4FF; --mut: #9B9BD6; --teal-ink: #FFE600; --blue: #FFE600;
+  --grad: linear-gradient(#FFE600, #FFE600); --on: #0B0B1E; --glass-a: #14143A; --glass-b: #14143A; --rim: #F4F4FF;
+  --shadow: 6px 6px 0 #FF2E9A; --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 4px;
+  --rad: 0; --rad-card: 0; --rad-s: 0; --rad-btn: 0; --rad-chip: 0; --surf: #14143A; --surf2: #14143A; --btn-shadow: 4px 4px 0 #00E5FF;
+  --display: 'Press Start 2P', monospace; --body: 'Pixelify Sans', sans-serif; --mono: 'Pixelify Sans', monospace;
+  --dw: 400; --dt: none; --dl: 0; --dlh: 1.4; --h1: clamp(1.1rem, 2.7vw, 2rem); --h2: 1.05rem; --fs: 18px;
+  --price-grad: linear-gradient(#FFE600, #FFE600); --fx: none; --tick-bg: #FFE600; --tick-on: #0B0B1E;
+  color-scheme: dark;
+}
+html[data-theme="arcade"] .body h3, html[data-theme="arcade"] .plan h3, html[data-theme="arcade"] .lb-bar h3 { font-size: .72rem; line-height: 1.5; }
+html[data-theme="arcade"] .plan .pp b { font-size: .8rem; line-height: 1.5; }
+html[data-theme="arcade"] .btn { font-family: 'Press Start 2P', monospace; font-size: .6rem; padding: 15px 16px; }
+html[data-theme="arcade"] .filters button, html[data-theme="arcade"] .tags span { border-width: 2px; }
+html[data-theme="arcade"] .hero .eb { font-size: .9rem; }
+html[data-theme="arcade"] .hero h1 { max-width: 15em; }
+html[data-theme="arcade"] .btn:hover { transform: translate(-2px, -2px); }
+.ar-st { left: 0; right: 0; top: -100px; bottom: -100px; will-change: background-position; }
+.ar-coin { left: 0; top: 0; width: 24px; height: 24px; background: #FFE600; box-shadow: 0 0 0 4px #FF9B1F; will-change: transform; }
+.ar-heart { left: 0; top: 0; width: 12px; height: 12px; background: #FF2E9A; box-shadow: 18px 0 #FF2E9A, 36px 0 #FF2E9A; will-change: transform; }
+.ar-ic { left: 0; top: 0; width: 70px; aspect-ratio: 357/392; background: #00E5FF; -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; filter: drop-shadow(4px 4px 0 #FF2E9A); will-change: transform; opacity: .9; }
+.ar-hud { left: 14px; top: 48px; font: 10px/2 'Press Start 2P', monospace; color: #FFE600; text-shadow: 2px 2px 0 #FF2E9A; white-space: pre; }
+
+/* ==========================================================================
+   3. RISO PRINT
+   ========================================================================== */
+html[data-theme="riso"] {
+  --bg: #F3F2EE; --ink: #1B2BD6; --mut: #4A56D4; --teal-ink: #E2440C; --blue: #E2440C;
+  --grad: linear-gradient(#FF5A1F, #FF5A1F); --on: #fff; --glass-a: #FBFAF6; --glass-b: #FBFAF6; --rim: #1B2BD6;
+  --shadow: 5px 5px 0 rgba(255,90,31,.9); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 2px;
+  --rad: 4px; --rad-card: 4px; --rad-s: 3px; --rad-btn: 4px; --rad-chip: 3px; --surf: #FBFAF6; --surf2: #FBFAF6; --btn-shadow: 3px 3px 0 #1B2BD6;
+  --display: 'Bricolage Grotesque', sans-serif; --body: 'Bricolage Grotesque', sans-serif; --mono: 'Space Mono', monospace;
+  --dw: 800; --dt: none; --dl: -.035em; --dlh: .98; --h1: clamp(2.4rem, 6.4vw, 5rem); --h2: 2.2rem;
+  --price-grad: linear-gradient(#E2440C, #E2440C); --fx: none; --tick-bg: #1B2BD6; --tick-on: #FFD400;
+}
+html[data-theme="riso"] h1, html[data-theme="riso"] h2 { text-shadow: 3px 3px 0 rgba(255,90,31,.85); }
+html[data-theme="riso"] .btn:hover { transform: translate(-2px, -2px); }
+.ri-c { left: 0; top: 0; border-radius: 50%; mix-blend-mode: multiply; will-change: transform; }
+.ri-ht { inset: -20%; background: radial-gradient(rgba(27,43,214,.45) 1.2px, transparent 1.8px) 0 0 / 9px 9px; opacity: .45; -webkit-mask-image: radial-gradient(circle at 82% 22%, #000, transparent 58%); mask-image: radial-gradient(circle at 82% 22%, #000, transparent 58%); will-change: transform; }
+.ri-stamp { left: 2.5vw; top: 58vh; border: 3px solid #FF5A1F; color: #E2440C; font: 800 14px/1.1 'Bricolage Grotesque', sans-serif; padding: 7px 11px; background: rgba(251,250,246,.92); text-align: center; will-change: transform; }
+
+/* ==========================================================================
+   4. ENTERPRISE
+   ========================================================================== */
+html[data-theme="enterprise"] {
+  --bg: #F3F5F9; --ink: #0F1B33; --mut: #51607A; --teal-ink: #0B5FFF; --blue: #0B5FFF;
+  --grad: linear-gradient(#0B5FFF, #0B5FFF); --on: #fff; --glass-a: #FFFFFF; --glass-b: #FFFFFF; --rim: #D8DEE9;
+  --shadow: 0 1px 2px rgba(15,27,51,.06), 0 8px 24px rgba(15,27,51,.07); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px;
+  --rad: 10px; --rad-card: 10px; --rad-s: 8px; --rad-btn: 8px; --rad-chip: 6px; --surf: #fff; --surf2: #fff; --btn-shadow: 0 2px 6px rgba(11,95,255,.35);
+  --display: 'IBM Plex Sans', sans-serif; --body: 'IBM Plex Sans', sans-serif; --mono: 'IBM Plex Mono', monospace;
+  --dw: 600; --dt: none; --dl: -.02em; --dlh: 1.08; --h1: clamp(2rem, 4.8vw, 3.5rem); --h2: 1.7rem;
+  --price-grad: linear-gradient(#0B5FFF, #0B5FFF); --fx: none; --tick-bg: #0F1B33; --tick-on: #BFD3FF;
+}
+.en-grid { inset: 0; background: linear-gradient(rgba(15,27,51,.05) 1px, transparent 1px) 0 0 / 100% 56px, linear-gradient(90deg, rgba(15,27,51,.05) 1px, transparent 1px) 0 0 / 56px 100%; }
+.en-bars { left: 0; right: 0; bottom: 0; height: 50vh; display: flex; align-items: flex-end; gap: 6px; padding: 0 2vw; }
+.en-bars i { flex: 1; display: block; height: 100%; background: linear-gradient(#0B5FFF, #6FA0FF); border-radius: 4px 4px 0 0; opacity: .2; transform-origin: bottom; will-change: transform; }
+.en-line { left: 0; bottom: 0; width: 100%; height: 50vh; }
+.en-prog { right: 16px; top: 48px; font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .08em; color: #51607A; text-transform: uppercase; background: #fff; border: 1px solid #D8DEE9; padding: 6px 10px; border-radius: 6px; }
+
+/* ==========================================================================
+   5. SUNSET WAVE
+   ========================================================================== */
+html[data-theme="sunset"] {
+  --bg: #2B0A4A; --ink: #FFF1F7; --mut: #E3B5D8; --teal-ink: #FFC15A; --blue: #FFC15A;
+  --grad: linear-gradient(180deg, #FFD36B, #FF7A7A); --on: #2B0A4A; --glass-a: rgba(25,4,45,.66); --glass-b: rgba(25,4,45,.5); --rim: rgba(255,193,90,.65);
+  --shadow: 0 0 28px rgba(255,95,143,.35); --glass-inset: inset 0 0 0 0 transparent; --blur: 10px; --bw: 1.5px;
+  --rad: 16px; --rad-card: 16px; --rad-s: 12px; --surf: rgba(25,4,45,.62); --surf2: rgba(25,4,45,.78); --btn-shadow: 0 0 18px rgba(255,193,90,.4);
+  --display: 'Righteous', sans-serif; --body: 'Rubik', sans-serif; --mono: 'Share Tech Mono', monospace;
+  --dw: 400; --dl: .01em; --dlh: 1.05; --h1: clamp(2.2rem, 5.8vw, 4.2rem);
+  --price-grad: linear-gradient(180deg, #FFD36B, #FF7A7A); --fx: none; --tick-bg: linear-gradient(90deg, #FFC15A, #FF6F8F); --tick-on: #2B0A4A;
+  color-scheme: dark;
+}
+.su-sky { inset: 0; background: linear-gradient(180deg, #2B0A4A 0%, #5B1A7A 45%, #B02E7E 78%, #FF6F5E 100%); }
+.su-night { inset: 0; background: radial-gradient(#fff 1px, transparent 1.5px) 0 0 / 90px 90px, radial-gradient(#FFD0E8 1px, transparent 1.5px) 40px 30px / 130px 130px; opacity: 0; }
+.su-dark { inset: 0; background: #10001f; opacity: 0; }
+.su-sun { left: 50%; top: 0; width: min(36vw, 320px); aspect-ratio: 1; margin-left: calc(min(36vw, 320px) / -2); border-radius: 50%; background: linear-gradient(180deg, #FFD36B, #FF5F8F); -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 13px, transparent 13px 17px); mask-image: repeating-linear-gradient(180deg, #000 0 13px, transparent 13px 17px); will-change: transform; }
+.su-m { left: -5%; right: -5%; bottom: 0; height: 34vh; will-change: transform; clip-path: polygon(0 100%, 0 60%, 12% 20%, 22% 55%, 34% 10%, 46% 60%, 58% 25%, 70% 65%, 82% 15%, 92% 50%, 100% 30%, 100% 100%); }
+.su-m.a { background: #3A0F5C; } .su-m.b { background: #1B0633; height: 24vh; clip-path: polygon(0 100%, 0 50%, 8% 30%, 20% 62%, 30% 20%, 44% 66%, 56% 28%, 68% 60%, 80% 22%, 92% 58%, 100% 36%, 100% 100%); }
+.su-floor { left: -25%; right: -25%; bottom: 0; height: 30vh; background: linear-gradient(rgba(255,255,255,.5) 2px, transparent 2px) 0 0 / 100% 40px, linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px) 0 0 / 70px 100%, #2B0A4A; transform: perspective(420px) rotateX(58deg); transform-origin: 50% 100%; }
+
+/* ==========================================================================
+   6. ACADEMIA
+   ========================================================================== */
+html[data-theme="academia"] {
+  --bg: #1B1410; --ink: #EFE6D2; --mut: #B8A98F; --teal-ink: #C9A66B; --blue: #C9A66B;
+  --grad: linear-gradient(#C9A66B, #C9A66B); --on: #1B1410; --glass-a: #241A14; --glass-b: #241A14; --rim: rgba(201,166,107,.7);
+  --shadow: 0 10px 30px rgba(0,0,0,.4); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 3px; --bs: double;
+  --rad: 3px; --rad-card: 3px; --rad-s: 2px; --rad-btn: 3px; --rad-chip: 2px; --surf: #241A14; --surf2: #2C1F17; --btn-shadow: none;
+  --display: 'Playfair Display', serif; --body: 'Lora', serif; --mono: 'IBM Plex Mono', monospace;
+  --dw: 700; --dt: none; --dl: -.01em; --dlh: 1.05; --h1: clamp(2.4rem, 6vw, 4.5rem); --h2: 2.1rem;
+  --price-grad: linear-gradient(#C9A66B, #C9A66B); --fx: radial-gradient(900px 600px at 50% 0%, rgba(201,166,107,.14), transparent 70%);
+  --tick-bg: #6E1F2B; --tick-on: #EFE6D2; color-scheme: dark;
+}
+html[data-theme="academia"] .acc { font-style: italic; }
+html[data-theme="academia"] .btn, html[data-theme="academia"] .filters button, html[data-theme="academia"] .tags span { border-width: 1px; border-style: solid; }
+.ac-vig { inset: 0; background: radial-gradient(ellipse at 50% 40%, transparent 48%, rgba(0,0,0,.6) 100%); }
+.ac-seal { right: 3vw; top: 34vh; width: min(24vw, 210px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #A12F40, #6E1F2B 60%, #4B1119); box-shadow: 0 10px 24px rgba(0,0,0,.5), inset 0 0 0 8px rgba(0,0,0,.18), inset 0 0 0 11px rgba(201,166,107,.55); display: grid; place-items: center; opacity: .5; will-change: transform; }
+.ac-seal i { display: block; width: 46%; aspect-ratio: 357/392; background: #C9A66B; -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; }
+.ac-frame { inset: 0; width: 100%; height: 100%; }
+.ac-est { left: 50%; bottom: 14px; transform: translateX(-50%); font: 600 11px 'IBM Plex Mono', monospace; letter-spacing: .3em; color: #C9A66B; opacity: .8; }
+
+/* ==========================================================================
+   7. CLAY CANDY
+   ========================================================================== */
+html[data-theme="clay"] {
+  --bg: #FDE7F3; --ink: #3A2A5C; --mut: #7B6A9C; --teal-ink: #D6358C; --blue: #D6358C;
+  --grad: linear-gradient(160deg, #FF9AD0, #FF5FA8); --on: #fff; --glass-a: #FFFFFF; --glass-b: #FFFFFF; --rim: rgba(255,255,255,.95);
+  --shadow: 0 20px 34px rgba(255,111,181,.22); --glass-inset: inset 0 10px 16px rgba(255,255,255,.95), inset 0 -10px 16px rgba(58,42,92,.06); --blur: 0px; --bw: 2px;
+  --rad: 34px; --rad-card: 30px; --rad-s: 22px; --rad-btn: 999px; --rad-chip: 999px; --surf: #fff; --surf2: #fff;
+  --btn-shadow: 0 10px 18px rgba(255,111,181,.35), inset 0 -5px 8px rgba(0,0,0,.1), inset 0 5px 8px rgba(255,255,255,.55);
+  --display: 'Baloo 2', sans-serif; --body: 'Nunito', sans-serif; --mono: 'DM Mono', monospace;
+  --dw: 800; --dt: none; --dl: -.01em; --dlh: 1; --h1: clamp(2.5rem, 6.4vw, 4.8rem);
+  --price-grad: linear-gradient(160deg, #FF5FA8, #C0267A); --fx: none; --tick-bg: linear-gradient(90deg, #FF9AD0, #FF5FA8); --tick-on: #fff;
+}
+html[data-theme="clay"] .filters button.on { box-shadow: inset 0 -4px 6px rgba(0,0,0,.2), inset 0 4px 6px rgba(255,255,255,.2); }
+.cl-s { left: 0; top: 0; will-change: transform; box-shadow: 0 18px 26px rgba(58,42,92,.22), inset 0 -12px 18px rgba(0,0,0,.12), inset 0 12px 18px rgba(255,255,255,.8); }
+
+/* ==========================================================================
+   8. GACETA
+   ========================================================================== */
+html[data-theme="gaceta"] {
+  --bg: #E9E9E4; --ink: #111; --mut: #444; --teal-ink: #C8102E; --blue: #C8102E;
+  --grad: linear-gradient(#C8102E, #C8102E); --on: #fff; --glass-a: #F4F4F0; --glass-b: #F4F4F0; --rim: #111;
+  --shadow: none; --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 1px;
+  --rad: 0; --rad-card: 0; --rad-s: 0; --rad-btn: 0; --rad-chip: 0; --surf: #F4F4F0; --surf2: #F4F4F0; --btn-shadow: none;
+  --display: 'Playfair Display', serif; --body: 'Libre Franklin', sans-serif; --mono: 'IBM Plex Mono', monospace;
+  --dw: 900; --dt: none; --dl: -.02em; --dlh: .98; --h1: clamp(2.7rem, 6.8vw, 5.2rem); --h2: 2.2rem;
+  --price-grad: linear-gradient(#C8102E, #C8102E); --fx: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), rgba(0,0,0,.1) calc(25% - 1px) 25%);
+  --tick-bg: #C8102E; --tick-on: #fff;
+}
+html[data-theme="gaceta"] .acc { font-style: italic; }
+html[data-theme="gaceta"] .top { border-bottom: 4px double #111; margin-bottom: 8px; }
+.ga-ht { inset: -10%; background: radial-gradient(rgba(17,17,17,.55) 1.4px, transparent 2px) 0 0 / 10px 10px; opacity: .22; -webkit-mask-image: radial-gradient(circle at 86% 30%, #000, transparent 55%); mask-image: radial-gradient(circle at 86% 30%, #000, transparent 55%); will-change: transform; }
+.ga-burst { right: 3vw; top: 20vh; width: min(18vw, 170px); aspect-ratio: 1; background: #C8102E; color: #fff; font: 900 clamp(15px, 2vw, 26px) 'Playfair Display', serif; display: grid; place-items: center; will-change: transform; clip-path: polygon(50% 0, 61% 20%, 82% 10%, 80% 32%, 100% 38%, 84% 54%, 98% 74%, 76% 74%, 70% 98%, 54% 82%, 36% 100%, 34% 78%, 10% 82%, 22% 60%, 0 46%, 22% 38%, 16% 14%, 38% 22%); opacity: .93; }
+.ga-burst.s { left: 4vw; right: auto; top: 70vh; width: min(11vw, 110px); background: #111; font-size: clamp(11px, 1.3vw, 16px); }
+
+/* ==========================================================================
+   9. MATERIAL TONAL
+   ========================================================================== */
+html[data-theme="material"] {
+  --bg: #FEF7FF; --ink: #1D1B20; --mut: #49454F; --teal-ink: #6750A4; --blue: #6750A4;
+  --grad: linear-gradient(#6750A4, #6750A4); --on: #fff; --glass-a: #F3EDF7; --glass-b: #F3EDF7; --rim: #CAC4D0;
+  --shadow: 0 1px 3px rgba(0,0,0,.18); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px;
+  --rad: 28px; --rad-card: 24px; --rad-s: 20px; --rad-btn: 999px; --rad-chip: 10px; --surf: #E8DEF8; --surf2: #E8DEF8; --btn-shadow: 0 2px 6px rgba(103,80,164,.4);
+  --display: 'Outfit', sans-serif; --body: 'Outfit', sans-serif; --mono: 'Roboto Mono', monospace;
+  --dw: 600; --dt: none; --dl: -.02em; --dlh: 1.05; --h1: clamp(2.3rem, 5.8vw, 4.2rem);
+  --price-grad: linear-gradient(#6750A4, #6750A4); --fx: radial-gradient(700px 500px at 100% 0%, rgba(208,188,255,.5), transparent 70%);
+  --tick-bg: #E8DEF8; --tick-on: #4F378B;
+}
+.ma-b { left: 0; top: 0; will-change: transform, border-radius; opacity: .85; }
+
+/* ==========================================================================
+   10. HUD COCKPIT
+   ========================================================================== */
+html[data-theme="hud"] {
+  --bg: #05090D; --ink: #CFEFFF; --mut: #6FA0B8; --teal-ink: #00D4FF; --blue: #FF9B1F;
+  --grad: linear-gradient(#FF9B1F, #FF9B1F); --on: #1A0E00; --glass-a: rgba(0,212,255,.06); --glass-b: rgba(0,212,255,.03); --rim: rgba(0,212,255,.55);
+  --shadow: none; --glass-inset: inset 0 0 0 0 transparent; --blur: 6px; --bw: 1px;
+  --rad: 0; --rad-card: 0; --rad-s: 0; --rad-btn: 0; --rad-chip: 0; --surf: rgba(0,212,255,.08); --surf2: rgba(5,9,13,.9); --btn-shadow: none;
+  --display: 'Oxanium', sans-serif; --body: 'Rajdhani', sans-serif; --mono: 'Share Tech Mono', monospace;
+  --dw: 700; --dt: uppercase; --dl: .04em; --dlh: 1; --h1: clamp(2.2rem, 5.6vw, 4.2rem); --h2: 1.8rem; --fs: 19px;
+  --price-grad: linear-gradient(#FF9B1F, #FF9B1F); --fx: none; --tick-bg: #FF9B1F; --tick-on: #1A0E00; color-scheme: dark;
+}
+html[data-theme="hud"] .glass, html[data-theme="hud"] .card, html[data-theme="hud"] .plan { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
+html[data-theme="hud"] .tags span::before, html[data-theme="hud"] .filters button::before { content: "[ "; } html[data-theme="hud"] .tags span::after, html[data-theme="hud"] .filters button::after { content: " ]"; }
+.hu-grid { inset: 0; background: linear-gradient(rgba(0,212,255,.07) 1px, transparent 1px) 0 0 / 52px 52px, linear-gradient(90deg, rgba(0,212,255,.07) 1px, transparent 1px) 0 0 / 52px 52px; will-change: background-position; }
+.hu-vig { inset: 0; background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,.65) 100%); }
+.hu-rd { right: -10vmin; top: 16vh; width: 72vmin; height: 72vmin; border-radius: 50%; opacity: .45; background: repeating-radial-gradient(circle, transparent 0 6.5vmin, rgba(0,212,255,.5) 6.5vmin calc(6.5vmin + 1px)), linear-gradient(rgba(0,212,255,.4), rgba(0,212,255,.4)) center / 1px 100% no-repeat, linear-gradient(rgba(0,212,255,.4), rgba(0,212,255,.4)) center / 100% 1px no-repeat; border: 1px solid rgba(0,212,255,.6); }
+.hu-sw { right: -10vmin; top: 16vh; width: 72vmin; height: 72vmin; border-radius: 50%; opacity: .5; background: conic-gradient(from 0deg, rgba(0,212,255,.7), transparent 26%); will-change: transform; }
+.hu-bl { width: 10px; height: 10px; border-radius: 50%; background: #FF9B1F; box-shadow: 0 0 12px #FF9B1F; will-change: opacity; }
+.hu-scan { left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(0,212,255,.65), transparent); will-change: transform; }
+.hu-c { width: 34px; height: 34px; border: 2px solid #00D4FF; opacity: .8; }
+.hu-c.tl { left: 10px; top: 46px; border-right: 0; border-bottom: 0; } .hu-c.tr { right: 10px; top: 46px; border-left: 0; border-bottom: 0; }
+.hu-c.bl { left: 10px; bottom: 10px; border-right: 0; border-top: 0; } .hu-c.br { right: 10px; bottom: 10px; border-left: 0; border-top: 0; }
+.hu-tele { left: 52px; top: 52px; font: 12px/1.7 'Share Tech Mono', monospace; color: #00D4FF; letter-spacing: .08em; white-space: pre; }

@@ -117,6 +117,7 @@
 
   var start = performance.now();
   function loop(now) {
+    if (document.documentElement.hasAttribute("data-theme")) { requestAnimationFrame(loop); return; }  // otro tema activo: no dibujar
     current += (target - current) * 0.05;
     mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
     draw(current, (now - start) / 1000);
