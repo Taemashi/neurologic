@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    PRECIOS Y CONTENIDO DE LOS 3 PAQUETES. Edita aquí y se actualizan
    las tres páginas. Moneda: COP. Los USD son aproximados.
    ============================================================ */
@@ -161,6 +161,9 @@ function wf(type) {
   return `<div class="wf" aria-hidden="true">${inner}</div>`;
 }
 
+function waLink(num, p) {
+  return "https://wa.me/" + num + "?text=" + encodeURIComponent("Hola Neurologic, me interesa el paquete " + p.name + ".");
+}
 function priceText(p) {
   return p.max ? `$${fmt(p.min)} a $${fmt(p.max)}` : `Desde $${fmt(p.min)}`;
 }
@@ -234,7 +237,8 @@ function render(id) {
   <section class="block"><h2>Preguntas frecuentes</h2>
     <div class="faq">${p.faq.map(f => `<details class="glass"><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join("")}</div></section>
 
-  <section class="cta-band glass"><h2>¿Hablamos de tu proyecto?</h2><a class="btn p" href="../#contacto">Pedir cotización</a></section>
+  <section class="cta-band glass"><h2>¿Hablamos de tu proyecto?</h2><div class="cta" style="margin:0"><a class="btn p" href="${waLink("573229269521", p)}" target="_blank" rel="noopener">WhatsApp Colombia</a><a class="btn s" href="${waLink("584167760728", p)}" target="_blank" rel="noopener">WhatsApp Venezuela</a></div></section>
 
   <footer><img src="../assets/logo-black.png" alt="Neurologic"><span>© ${new Date().getFullYear()} Neurologic. Todos los derechos reservados.</span></footer>`;
 }
+

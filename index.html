@@ -140,6 +140,11 @@
   .panel { padding: 34px; }
   .panel p { color: var(--mut); margin-top: 12px; }
   .panel .btn { margin-top: 20px; }
+  .wa-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .wa-row .btn { margin-top: 0; }
+  .panel .nums { font: 500 .85rem var(--mono); margin-top: 16px; }
+  .panel .gh { font-size: .9rem; margin-top: 8px; }
+  .panel .gh a { color: var(--blue); font-weight: 700; }
   footer { padding: 48px 0 40px; color: var(--mut); font-size: .88rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
   footer img { width: 120px; height: auto; opacity: .85; }
 
@@ -211,8 +216,13 @@
       </div>
       <div class="panel glass" id="contacto">
         <h2>Contacto</h2>
-        <p>¿Tienes un proyecto en mente? Revisa nuestro trabajo y cuéntanos qué necesitas.</p>
-        <a class="btn p" href="https://github.com/Taemashi" target="_blank" rel="noopener">Ver GitHub</a>
+        <p>¿Tienes un proyecto en mente? Escríbenos por WhatsApp y cuéntanos qué necesitas.</p>
+        <div class="wa-row">
+          <a class="btn p" href="https://wa.me/573229269521?text=Hola%20Neurologic%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web." target="_blank" rel="noopener">WhatsApp Colombia</a>
+          <a class="btn s" href="https://wa.me/584167760728?text=Hola%20Neurologic%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web." target="_blank" rel="noopener">WhatsApp Venezuela</a>
+        </div>
+        <p class="nums">+57 322 926 9521 · +58 416 776 0728</p>
+        <p class="gh"><a href="https://github.com/Taemashi" target="_blank" rel="noopener">GitHub</a></p>
       </div>
     </div>
   </section>
@@ -235,6 +245,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="helix.js?v=4"></script>
+<script src="wa.js"></script>
 <script>
 /* ============================================================
    AGREGA TUS PROYECTOS AQUÍ. Un bloque { ... } por proyecto.
