@@ -84,7 +84,7 @@
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
   .card { padding: 14px; display: flex; flex-direction: column; gap: 10px; transition: transform .25s, box-shadow .25s; border-radius: 22px; }
   .card:hover { transform: translateY(-5px); box-shadow: inset 0 1px 0 #fff, 0 30px 70px rgba(40,60,130,.26); }
-  .thumb { aspect-ratio: 16/10; border-radius: 16px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(135deg, rgba(23,195,178,.4), rgba(53,86,232,.4)); }
+  .thumb { aspect-ratio: 2/1; border-radius: 16px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(135deg, rgba(23,195,178,.4), rgba(53,86,232,.4)); }
   .thumb img.shot { width: 100%; height: 100%; object-fit: cover; }
   .thumb img.mk { width: 48px; height: auto; filter: brightness(0) saturate(100%); opacity: .8; }
   .body { padding: 6px 8px 8px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
@@ -170,7 +170,7 @@ const PROJECTS = [
     tags: ["Web", "JavaScript", "3D", "E-commerce"],
     demo: "https://taemashi.github.io/loop-uniformes/",
     repo: "https://github.com/Taemashi/loop-uniformes",
-    image: "https://raw.githubusercontent.com/Taemashi/loop-uniformes/main/camisa.png"
+    image: "assets/loop.jpg"
   },
   {
     title: "Dermix",
@@ -178,7 +178,7 @@ const PROJECTS = [
     tags: ["Web", "E-commerce", "Firebase"],
     demo: "https://dermix-tienda.web.app/",
     repo: "",
-    image: ""
+    image: "assets/dermix.jpg"
   },
   {
     title: "reActiva",
@@ -186,7 +186,7 @@ const PROJECTS = [
     tags: ["Web", "Salud", "Software"],
     demo: "https://reactivagroup.org/",
     repo: "",
-    image: ""
+    image: "assets/reactiva.jpg"
   }
   // , { title:"", description:"", tags:[], demo:"", repo:"", image:"" }
 ];
