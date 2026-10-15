@@ -44,7 +44,7 @@
   a { color: inherit; text-decoration: none; }
   #bg3d { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
   #bg3d.ready { opacity: 1; }
-  @media (max-aspect-ratio: 1/1) { #bg3d.ready { opacity: .5; } }
+  @media (max-aspect-ratio: 1/1) { #bg3d.ready { opacity: .8; } }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
   :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
 
@@ -234,7 +234,7 @@
 </dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="helix.js"></script>
+<script src="helix.js?v=3"></script>
 <script>
 /* ============================================================
    AGREGA TUS PROYECTOS AQUÍ. Un bloque { ... } por proyecto.
@@ -347,6 +347,7 @@ renderFilters(); render();
 </script>
 </body>
 </html>
+
 
 
 

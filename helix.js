@@ -87,7 +87,7 @@
     wide = w / h > 1.15;
     var halfW = Math.tan((camera.fov * Math.PI) / 360) * camera.position.z * camera.aspect;
     group.position.x = wide ? halfW * 0.5 : 0;
-    var sc = wide ? 1 : 0.85;
+    var sc = wide ? 1 : 1;
     group.scale.setScalar(sc);
     group.userData.baseScale = sc;
     if (reduced) draw(0.12);
@@ -130,5 +130,6 @@
   else { requestAnimationFrame(loop); }
   canvas.classList.add("ready");
 })();
+
 
 
