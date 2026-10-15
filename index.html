@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Figtree:wght@400;600;800&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&family=DM+Mono:wght@400;500&display=swap">
 <style>
   :root {
     --bg: #E8EEFB;
@@ -22,8 +22,8 @@
     --glass-b: rgba(255,255,255,.32);
     --rim: rgba(255,255,255,.95);
     --shadow: 0 24px 60px rgba(40,60,130,.18);
-    --display: 'Michroma', system-ui, sans-serif;
-    --body: 'Figtree', system-ui, sans-serif;
+    --display: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --body: 'Plus Jakarta Sans', system-ui, sans-serif;
     --mono: 'DM Mono', ui-monospace, monospace;
     color-scheme: light;
   }
@@ -64,7 +64,8 @@
   /* hero */
   .hero { position: relative; margin-top: 24px; padding: 56px 48px 52px; overflow: hidden; }
   .hero .eb { font: 500 .78rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 16px; }
-  .hero h1 { font: 400 clamp(1.7rem, 4.6vw, 3.1rem)/1.12 var(--display); letter-spacing: -.02em; max-width: 15em; text-wrap: balance; }
+  .hero h1 { font: 800 clamp(2.1rem, 5.6vw, 4rem)/1.04 var(--display); letter-spacing: -.035em; max-width: 13em; text-wrap: balance; }
+  .acc { color: var(--blue); }
   .hero p { margin-top: 18px; max-width: 46ch; color: var(--mut); font-size: 1.1rem; }
   .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
   .hero .mark { position: absolute; right: 48px; top: 40px; width: clamp(110px, 17vw, 210px); aspect-ratio: 357/392; background: var(--grad); -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; opacity: .95; }
@@ -75,7 +76,7 @@
 
   /* proyectos */
   section.block { padding-top: 64px; }
-  h2 { font: 400 1.5rem/1.2 var(--display); letter-spacing: -.01em; }
+  h2 { font: 800 1.9rem/1.15 var(--display); letter-spacing: -.03em; }
   .sub { color: var(--mut); margin-top: 8px; max-width: 52ch; }
   .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; }
   .filters button { font: 500 .8rem var(--mono); letter-spacing: .05em; padding: 8px 14px; border-radius: 999px; cursor: pointer; color: var(--mut); background: rgba(255,255,255,.6); border: 1px solid var(--rim); transition: all .2s; }
@@ -100,7 +101,7 @@
   .lb-img { border-radius: 16px; overflow: auto; background: #fff; min-height: 0; flex: 1; display: grid; place-items: start center; }
   .lb-img img { display: block; width: 100%; height: auto; }
   .lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 0 6px 4px; }
-  .lb-bar h3 { font: 400 1.05rem var(--display); }
+  .lb-bar h3 { font: 800 1.05rem var(--display); }
   .lb-bar .links { margin: 0; }
   .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.9); border: 1px solid var(--rim); box-shadow: 0 8px 22px rgba(40,60,130,.3); display: grid; place-items: center; }
   .lb-nav svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
@@ -110,7 +111,7 @@
   .lb-close svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.6; stroke-linecap: round; }
   @media (max-width: 720px) { .lb-nav.prev { left: 6px; } .lb-nav.next { right: 6px; } .lb-close { top: -14px; right: 4px; } }
   .body { padding: 6px 8px 8px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .body h3 { font: 400 1.05rem var(--display); }
+  .body h3 { font: 800 1.05rem var(--display); }
   .body p { color: var(--mut); font-size: .95rem; flex: 1; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tags span { font: 500 .7rem var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.8); border: 1px solid var(--rim); color: var(--teal-ink); }
@@ -123,10 +124,10 @@
   .plan:hover { transform: translateY(-5px); }
   .plan.feat { border-color: transparent; box-shadow: inset 0 1px 0 #fff, 0 0 0 2px var(--blue), var(--shadow); }
   .plan .pn { font: 500 .74rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-ink); }
-  .plan h3 { font: 400 1.25rem var(--display); }
+  .plan h3 { font: 800 1.25rem var(--display); }
   .plan p { color: var(--mut); font-size: .95rem; flex: 1; }
   .plan .pp { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; }
-  .plan .pp b { font: 400 1.15rem var(--display); background: linear-gradient(120deg, #0B7C74, #3556E8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .plan .pp b { font: 800 1.15rem var(--display); background: linear-gradient(120deg, #0B7C74, #3556E8); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .plan .pp b.u { margin-top: 10px; background: none; color: var(--ink); -webkit-text-fill-color: var(--ink); }
   .plan .pp small { font: 500 .72rem var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--mut); }
   .plan .more { font-weight: 800; font-size: .92rem; color: var(--blue); margin-top: 8px; }
@@ -160,7 +161,7 @@
   <section class="hero glass">
     <div class="mark" aria-hidden="true"></div>
     <div class="eb">Estudio de desarrollo de software</div>
-    <h1>Software con lógica y criterio.</h1>
+    <h1>Software con <span class="acc">lógica</span> y criterio.</h1>
     <p>Somos Neurologic. Diseñamos y construimos tiendas en línea, aplicaciones web y herramientas a la medida.</p>
     <div class="cta"><a class="btn p" href="#proyectos">Ver proyectos</a><a class="btn s" href="#contacto">Hablemos</a></div>
   </section>
@@ -340,4 +341,6 @@ renderFilters(); render();
 </script>
 </body>
 </html>
+
+
 
