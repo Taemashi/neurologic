@@ -65,13 +65,13 @@
       var it = items[k], t = it.t;
       var a = t * twist + it.s * Math.PI;
       var y = (t - 0.5) * HEIGHT;
-      var r = R * (1 + 0.06 * Math.sin(t * 7 + p * 6));
+      var r = R * (1 + 0.06 * Math.sin(t * 7 + p * 3));
       it.mesh.position.set(r * Math.cos(a), y, r * Math.sin(a));
       tangent.set(-r * Math.sin(a) * twist, HEIGHT, r * Math.cos(a) * twist).normalize();
       qAlign.setFromUnitVectors(up, tangent);
-      qSpin.setFromAxisAngle(up, p * Math.PI * 8 + it.i * 0.35 + time * 0.4);
+      qSpin.setFromAxisAngle(up, p * Math.PI * 3 + it.i * 0.35 + time * 0.2);
       it.mesh.quaternion.copy(qAlign).multiply(qSpin);
-      var sc = 0.5 + 0.12 * Math.sin(t * Math.PI * 4 + p * 10 + it.s) + 0.22 * t;
+      var sc = 0.5 + 0.12 * Math.sin(t * Math.PI * 4 + p * 4 + it.s) + 0.22 * t;
       it.mesh.scale.setScalar(sc);
     }
   }
@@ -109,7 +109,7 @@
   function draw(p, time) {
     layout(p, time || 0);
     group.position.y = (p - 0.5) * 9;
-    group.rotation.y = p * Math.PI * 5 + (time || 0) * 0.06;
+    group.rotation.y = p * Math.PI * 2 + (time || 0) * 0.03;
     group.rotation.x = -0.08 + my * 0.08;
     group.rotation.z = 0.06 + mx * 0.05;
     renderer.render(scene, camera);
@@ -117,7 +117,7 @@
 
   var start = performance.now();
   function loop(now) {
-    current += (target - current) * 0.075;
+    current += (target - current) * 0.05;
     mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
     draw(current, (now - start) / 1000);
     requestAnimationFrame(loop);
@@ -130,6 +130,7 @@
   else { requestAnimationFrame(loop); }
   canvas.classList.add("ready");
 })();
+
 
 
 
