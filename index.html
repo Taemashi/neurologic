@@ -1,0 +1,164 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neurologic · Portafolio</title>
+<meta name="description" content="Neurologic es un estudio de desarrollo de software. Aquí están las páginas y aplicaciones que hemos construido.">
+<style>
+  :root {
+    --bg: #0b0d12;
+    --surface: #131722;
+    --border: #232a3b;
+    --text: #e8ecf5;
+    --muted: #8b95ab;
+    --accent: #7c5cff;
+    --accent2: #22d3ee;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f6f7fb; --surface:#fff; --border:#dfe3ee; --text:#161a26; --muted:#5b6578; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  header.top { display:flex; justify-content:space-between; align-items:center; padding: 22px 0; }
+  .brand { font-weight: 800; letter-spacing: .02em; font-size: 1.15rem; display:flex; align-items:center; gap:10px; }
+  .dot { width:12px; height:12px; border-radius:50%; background: linear-gradient(135deg,var(--accent),var(--accent2)); }
+  nav a { color: var(--muted); margin-left: 22px; font-size:.95rem; }
+  nav a:hover { color: var(--text); }
+
+  .hero { padding: 70px 0 50px; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3.6rem); line-height:1.1; max-width: 16ch; }
+  .hero h1 span { background: linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { color: var(--muted); max-width: 52ch; margin-top: 18px; font-size:1.1rem; }
+
+  .filters { display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 26px; }
+  .filters button { background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:6px 14px; font:inherit; font-size:.9rem; cursor:pointer; }
+  .filters button.on, .filters button:hover { color:var(--text); border-color:var(--accent); }
+
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; padding-bottom: 70px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; transition: transform .2s, border-color .2s; }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .thumb { aspect-ratio: 16/10; background: linear-gradient(135deg,#1b1f33,#2a1f4d); display:grid; place-items:center; overflow:hidden; }
+  .thumb img { width:100%; height:100%; object-fit:cover; }
+  .thumb.ph { font-size:2.4rem; font-weight:800; color:rgba(255,255,255,.25); }
+  .body { padding:18px 20px 20px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .body h3 { font-size:1.2rem; }
+  .body p { color:var(--muted); font-size:.95rem; flex:1; }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tags span { font-size:.75rem; padding:2px 10px; border-radius:999px; background:rgba(124,92,255,.14); color:var(--accent2); }
+  .links { display:flex; gap:10px; margin-top:6px; }
+  .btn { padding:8px 14px; border-radius:10px; font-size:.9rem; border:1px solid var(--border); }
+  .btn.primary { background: linear-gradient(135deg,var(--accent),#5b8cff); border-color:transparent; color:#fff; }
+  .btn:hover { filter:brightness(1.15); }
+
+  section.about, section.contact { padding: 30px 0 60px; border-top:1px solid var(--border); }
+  h2 { font-size:1.6rem; margin-bottom:12px; }
+  section p { color:var(--muted); max-width:62ch; }
+  footer { border-top:1px solid var(--border); padding:26px 0; color:var(--muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#"><span class="dot"></span>Neurologic</a>
+    <nav><a href="#proyectos">Proyectos</a><a href="#estudio">Estudio</a><a href="#contacto">Contacto</a></nav>
+  </header>
+
+  <section class="hero">
+    <h1>Software con <span>lógica</span> y criterio.</h1>
+    <p>Somos Neurologic, un estudio de desarrollo de software. Estas son algunas de las páginas y aplicaciones que hemos construido.</p>
+  </section>
+
+  <section id="proyectos">
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="about" id="estudio">
+    <h2>El estudio</h2>
+    <p>Neurologic es un estudio de desarrollo de software. Diseñamos y construimos tiendas en línea, aplicaciones web y herramientas a la medida para marcas y equipos de distintos sectores.</p>
+  </section>
+
+  <section class="contact" id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Tienes un proyecto en mente? Escríbenos o revisa nuestro trabajo en <a href="https://github.com/Taemashi" style="color:var(--accent2)">GitHub</a>.</p>
+  </section>
+
+  <footer>© <span id="y"></span> Neurologic. Todos los derechos reservados.</footer>
+</div>
+
+<script>
+/* ============================================================
+   AGREGA TUS PROYECTOS AQUÍ. Un bloque { ... } por proyecto.
+   - demo: link a la página publicada (o "" si no tiene)
+   - repo: link al código en GitHub (o "" si no está en GitHub)
+   - image: URL o ruta de una captura (o "" para usar un placeholder)
+   ============================================================ */
+const PROJECTS = [
+  {
+    title: "Loop Uniformes",
+    description: "Tienda con personalizador 3D de uniformes: elige colores y ubicaciones en tiempo real, con páginas de envíos, cambios, términos y privacidad.",
+    tags: ["Web", "JavaScript", "3D", "E-commerce"],
+    demo: "https://taemashi.github.io/loop-uniformes/",
+    repo: "https://github.com/Taemashi/loop-uniformes",
+    image: "https://raw.githubusercontent.com/Taemashi/loop-uniformes/main/camisa.png"
+  },
+  {
+    title: "Dermix",
+    description: "Tienda en línea de una marca de biotecnología para el cuidado de la piel (skincare), publicada en Firebase Hosting.",
+    tags: ["Web", "E-commerce", "Firebase"],
+    demo: "https://dermix-tienda.web.app/",
+    repo: "",
+    image: ""
+  },
+  {
+    title: "reActiva",
+    description: "Software para la práctica clínica en terapia ocupacional, fisioterapia, fonoaudiología y psicología: evaluación, planes de tratamiento, generación de actividades, seguimiento e informes en PDF.",
+    tags: ["Web", "Salud", "Software"],
+    demo: "https://reactivagroup.org/",
+    repo: "",
+    image: ""
+  }
+  // , { title:"", description:"", tags:[], demo:"", repo:"", image:"" }
+];
+
+const grid = document.getElementById("grid");
+const filters = document.getElementById("filters");
+let active = "Todos";
+
+function render() {
+  grid.innerHTML = "";
+  PROJECTS.filter(p => active === "Todos" || p.tags.includes(active)).forEach(p => {
+    const c = document.createElement("article");
+    c.className = "card";
+    const thumb = p.image
+      ? `<div class="thumb"><img src="${p.image}" alt="Captura de ${p.title}" loading="lazy"></div>`
+      : `<div class="thumb ph">${p.title.slice(0,2).toUpperCase()}</div>`;
+    c.innerHTML = `${thumb}<div class="body"><h3>${p.title}</h3><p>${p.description}</p>
+      <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+      <div class="links">
+        ${p.demo ? `<a class="btn primary" href="${p.demo}" target="_blank" rel="noopener">Ver sitio</a>` : ""}
+        ${p.repo ? `<a class="btn" href="${p.repo}" target="_blank" rel="noopener">Código</a>` : ""}
+      </div></div>`;
+    grid.appendChild(c);
+  });
+}
+function renderFilters() {
+  const all = ["Todos", ...new Set(PROJECTS.flatMap(p => p.tags))];
+  filters.innerHTML = "";
+  all.forEach(t => {
+    const b = document.createElement("button");
+    b.textContent = t; b.className = t === active ? "on" : "";
+    b.onclick = () => { active = t; renderFilters(); render(); };
+    filters.appendChild(b);
+  });
+}
+document.getElementById("y").textContent = new Date().getFullYear();
+renderFilters(); render();
+</script>
+</body>
+</html>
+
