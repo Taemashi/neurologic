@@ -87,6 +87,28 @@
   .thumb { aspect-ratio: 2/1; border-radius: 16px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(135deg, rgba(23,195,178,.4), rgba(53,86,232,.4)); }
   .thumb img.shot { width: 100%; height: 100%; object-fit: cover; }
   .thumb img.mk { width: 48px; height: auto; filter: brightness(0) saturate(100%); opacity: .8; }
+  button.thumb { border: 0; padding: 0; width: 100%; cursor: zoom-in; position: relative; font: inherit; color: inherit; }
+  button.thumb .zoom-ic { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.85); border: 1px solid var(--rim); box-shadow: 0 6px 16px rgba(40,60,130,.25); opacity: 0; transform: scale(.85); transition: opacity .2s, transform .2s; }
+  button.thumb:hover .zoom-ic, button.thumb:focus-visible .zoom-ic { opacity: 1; transform: none; }
+  .zoom-ic svg { width: 16px; height: 16px; stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; }
+  @media (hover: none) { button.thumb .zoom-ic { opacity: 1; transform: none; } }
+
+  /* vista ampliada */
+  dialog.lb { border: 0; padding: 0; background: transparent; width: min(1180px, 94vw); max-width: none; max-height: 94vh; margin: auto; color: var(--ink); overflow: visible; }
+  dialog.lb::backdrop { background: rgba(11,18,48,.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .lb-box { padding: 14px; display: flex; flex-direction: column; gap: 14px; max-height: 94vh; }
+  .lb-img { border-radius: 16px; overflow: auto; background: #fff; min-height: 0; flex: 1; display: grid; place-items: start center; }
+  .lb-img img { display: block; width: 100%; height: auto; }
+  .lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 0 6px 4px; }
+  .lb-bar h3 { font: 400 1.05rem var(--display); }
+  .lb-bar .links { margin: 0; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.9); border: 1px solid var(--rim); box-shadow: 0 8px 22px rgba(40,60,130,.3); display: grid; place-items: center; }
+  .lb-nav svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .lb-nav[hidden] { display: none; }
+  .lb-nav.prev { left: -22px; } .lb-nav.next { right: -22px; }
+  .lb-close { position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; background: var(--ink); border: 2px solid #fff; display: grid; place-items: center; }
+  .lb-close svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.6; stroke-linecap: round; }
+  @media (max-width: 720px) { .lb-nav.prev { left: 6px; } .lb-nav.next { right: 6px; } .lb-close { top: -14px; right: 4px; } }
   .body { padding: 6px 8px 8px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .body h3 { font: 400 1.05rem var(--display); }
   .body p { color: var(--mut); font-size: .95rem; flex: 1; }
@@ -156,6 +178,16 @@
   </footer>
 </div>
 
+<dialog class="lb" id="lb" aria-label="Vista ampliada del proyecto">
+  <div class="lb-box glass">
+    <div class="lb-img"><img id="lbImg" src="" alt=""></div>
+    <div class="lb-bar"><h3 id="lbTitle"></h3><div class="links" id="lbLinks"></div></div>
+  </div>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="lb-nav prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="lb-nav next" id="lbNext" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+</dialog>
+
 <script>
 /* ============================================================
    AGREGA TUS PROYECTOS AQUÍ. Un bloque { ... } por proyecto.
@@ -195,14 +227,53 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;"
 const grid = document.getElementById("grid");
 const filters = document.getElementById("filters");
 let active = "Todos";
+let visible = [];
+let cur = 0, opener = null;
+const lb = document.getElementById("lb");
+const lbImg = document.getElementById("lbImg");
+
+function lbShow(i) {
+  const withImg = visible.filter(p => p.image);
+  if (!withImg.length) return;
+  cur = (i + withImg.length) % withImg.length;
+  const p = withImg[cur];
+  lbImg.src = p.image; lbImg.alt = "Captura de " + p.title;
+  document.getElementById("lbTitle").textContent = p.title;
+  document.getElementById("lbLinks").innerHTML =
+    (p.demo ? `<a class="btn p" href="${esc(p.demo)}" target="_blank" rel="noopener">Ver sitio</a>` : "") +
+    (p.repo ? `<a class="btn s" href="${esc(p.repo)}" target="_blank" rel="noopener">Código</a>` : "");
+  const many = withImg.length > 1;
+  document.getElementById("lbPrev").hidden = !many;
+  document.getElementById("lbNext").hidden = !many;
+}
+function lbOpen(i, from) {
+  const withImg = visible.filter(p => p.image);
+  lbShow(withImg.indexOf(visible[i]));
+  opener = from;
+  if (!lb.open) lb.showModal();
+}
+grid.addEventListener("click", e => {
+  const b = e.target.closest("button.thumb");
+  if (b) lbOpen(+b.dataset.i, b);
+});
+document.getElementById("lbClose").onclick = () => lb.close();
+document.getElementById("lbPrev").onclick = () => lbShow(cur - 1);
+document.getElementById("lbNext").onclick = () => lbShow(cur + 1);
+lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+lb.addEventListener("close", () => { if (opener) opener.focus(); });
+lb.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") lbShow(cur - 1);
+  if (e.key === "ArrowRight") lbShow(cur + 1);
+});
 
 function render() {
   grid.innerHTML = "";
-  PROJECTS.filter(p => active === "Todos" || p.tags.includes(active)).forEach(p => {
+  visible = PROJECTS.filter(p => active === "Todos" || p.tags.includes(active));
+  visible.forEach((p, i) => {
     const c = document.createElement("article");
     c.className = "card glass";
     const thumb = p.image
-      ? `<div class="thumb"><img class="shot" src="${esc(p.image)}" alt="Captura de ${esc(p.title)}" loading="lazy"></div>`
+      ? `<button type="button" class="thumb" data-i="${i}" aria-label="Ampliar captura de ${esc(p.title)}"><img class="shot" src="${esc(p.image)}" alt="" loading="lazy"><span class="zoom-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M11 8.5v5M8.5 11h5"/></svg></span></button>`
       : `<div class="thumb"><img class="mk" src="assets/icon-black.png" alt=""></div>`;
     c.innerHTML = `${thumb}<div class="body"><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
       <div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
