@@ -32,6 +32,7 @@
     --btn-shadow: 0 10px 26px rgba(53,86,232,.3);
     --dw: 800; --dt: none; --dl: -.035em; --dlh: 1.04; --h1: clamp(2.1rem, 5.6vw, 4rem); --h2: 1.9rem; --fs: 17px;
     --price-grad: linear-gradient(120deg, #0B7C74, #3556E8);
+    --logo-fill: linear-gradient(100deg, #0B1230, #2C3F9E 62%, #3556E8);
     --fx: radial-gradient(620px 520px at 88% 6%, rgba(45,226,200,.55), transparent 70%), radial-gradient(700px 600px at 4% 70%, rgba(90,120,255,.45), transparent 70%), radial-gradient(480px 420px at 60% 46%, rgba(190,150,255,.30), transparent 70%);
     color-scheme: light;
   }
@@ -64,7 +65,8 @@
 
   /* cabecera */
   .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; }
-  .top .logo { display: block; width: 170px; height: auto; }
+  .top .logo, .flogo { display: block; aspect-ratio: 1949/393; background: var(--logo-fill); -webkit-mask: url(assets/logo-black.png) center/contain no-repeat; mask: url(assets/logo-black.png) center/contain no-repeat; transition: background .3s; }
+  .top .logo { width: 170px; }
   .top nav { display: flex; gap: 6px; }
   .top nav a { font-size: .95rem; color: var(--mut); padding: 8px 14px; border-radius: var(--rad-chip); transition: background .2s, color .2s; }
   .top nav a:hover { background: var(--surf); color: var(--ink); }
@@ -151,7 +153,7 @@
   .panel .gh { font-size: .9rem; margin-top: 8px; }
   .panel .gh a { color: var(--blue); font-weight: 700; }
   footer { padding: 48px 0 40px; color: var(--mut); font-size: .88rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
-  footer img { width: 120px; height: auto; opacity: .85; }
+  .flogo { width: 120px; opacity: .9; }
 
   @media (max-width: 720px) {
     .top nav a:not(:last-child) { display: none; }
@@ -163,7 +165,7 @@
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
-<link rel="stylesheet" href="themes.css?v=1">
+<link rel="stylesheet" href="themes.css?v=4">
 </head>
 <body>
 <div class="tick" id="tick" aria-hidden="true"></div>
@@ -172,7 +174,7 @@
 <div id="fgx" aria-hidden="true"></div>
 <div class="wrap">
   <header class="top">
-    <a href="#" aria-label="Neurologic, inicio"><img class="logo" src="assets/logo-black.png" alt="Neurologic"></a>
+    <a href="#" aria-label="Neurologic, inicio"><span class="logo" role="img" aria-label="Neurologic"></span></a>
     <nav aria-label="Principal"><a href="#proyectos">Proyectos</a><a href="#servicios">Servicios</a><a href="#estudio">Estudio</a><a href="#contacto">Contacto</a></nav>
   </header>
 
@@ -237,7 +239,7 @@
   </section>
 
   <footer>
-    <img src="assets/logo-black.png" alt="Neurologic">
+    <span class="flogo" role="img" aria-label="Neurologic"></span>
     <span>© <span id="y"></span> Neurologic. Todos los derechos reservados.</span>
   </footer>
 </div>
@@ -368,6 +370,10 @@ renderFilters(); render();
 </script>
 </body>
 </html>
+
+
+
+
 
 
 

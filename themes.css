@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    TEMAS. El tema principal (Aura Frost) está en index.html.
    Cada tema cambia variables en <html data-theme="...">.
    ========================================================================== */
@@ -41,6 +41,7 @@ html[data-theme] #bg3d { display: none; }
    1. CHROME Y2K
    ========================================================================== */
 html[data-theme="chrome"] {
+  --logo-fill: linear-gradient(180deg, #9AAECF, #16234F 52%, #7C93BD);
   --bg: #DDE4EF; --ink: #0F1B3D; --mut: #4A5878; --teal-ink: #2F6BFF; --blue: #2F6BFF;
   --grad: linear-gradient(180deg, #78AAFF, #2F6BFF 55%, #1B47C9); --on: #fff;
   --glass-a: #FFFFFF; --glass-b: #CFD9EA; --rim: #9FB0CC; --shadow: 0 14px 32px rgba(40,70,140,.28);
@@ -60,6 +61,7 @@ html[data-theme="chrome"] .plan .pp b { font-size: .95rem; }
    2. ARCADE PIXEL
    ========================================================================== */
 html[data-theme="arcade"] {
+  --logo-fill: #FFE600;
   --bg: #0B0B1E; --ink: #F4F4FF; --mut: #9B9BD6; --teal-ink: #FFE600; --blue: #FFE600;
   --grad: linear-gradient(#FFE600, #FFE600); --on: #0B0B1E; --glass-a: #14143A; --glass-b: #14143A; --rim: #F4F4FF;
   --shadow: 6px 6px 0 #FF2E9A; --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 4px;
@@ -80,12 +82,13 @@ html[data-theme="arcade"] .btn:hover { transform: translate(-2px, -2px); }
 .ar-coin { left: 0; top: 0; width: 24px; height: 24px; background: #FFE600; box-shadow: 0 0 0 4px #FF9B1F; will-change: transform; }
 .ar-heart { left: 0; top: 0; width: 12px; height: 12px; background: #FF2E9A; box-shadow: 18px 0 #FF2E9A, 36px 0 #FF2E9A; will-change: transform; }
 .ar-ic { left: 0; top: 0; width: 70px; aspect-ratio: 357/392; background: #00E5FF; -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; filter: drop-shadow(4px 4px 0 #FF2E9A); will-change: transform; opacity: .9; }
-.ar-hud { left: 14px; top: 48px; font: 10px/2 'Press Start 2P', monospace; color: #FFE600; text-shadow: 2px 2px 0 #FF2E9A; white-space: pre; }
+.ar-hud { left: 14px; bottom: 80px; font: 10px/2 'Press Start 2P', monospace; color: #FFE600; text-shadow: 2px 2px 0 #FF2E9A; white-space: pre; }
 
 /* ==========================================================================
    3. RISO PRINT
    ========================================================================== */
 html[data-theme="riso"] {
+  --logo-fill: #1B2BD6;
   --bg: #F3F2EE; --ink: #1B2BD6; --mut: #4A56D4; --teal-ink: #E2440C; --blue: #E2440C;
   --grad: linear-gradient(#FF5A1F, #FF5A1F); --on: #fff; --glass-a: #FBFAF6; --glass-b: #FBFAF6; --rim: #1B2BD6;
   --shadow: 5px 5px 0 rgba(255,90,31,.9); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 2px;
@@ -104,6 +107,7 @@ html[data-theme="riso"] .btn:hover { transform: translate(-2px, -2px); }
    4. ENTERPRISE
    ========================================================================== */
 html[data-theme="enterprise"] {
+  --logo-fill: #0B5FFF;
   --bg: #F3F5F9; --ink: #0F1B33; --mut: #51607A; --teal-ink: #0B5FFF; --blue: #0B5FFF;
   --grad: linear-gradient(#0B5FFF, #0B5FFF); --on: #fff; --glass-a: #FFFFFF; --glass-b: #FFFFFF; --rim: #D8DEE9;
   --shadow: 0 1px 2px rgba(15,27,51,.06), 0 8px 24px rgba(15,27,51,.07); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px;
@@ -122,6 +126,7 @@ html[data-theme="enterprise"] {
    5. SUNSET WAVE
    ========================================================================== */
 html[data-theme="sunset"] {
+  --logo-fill: linear-gradient(180deg, #FFD36B, #FF5F8F);
   --bg: #2B0A4A; --ink: #FFF1F7; --mut: #E3B5D8; --teal-ink: #FFC15A; --blue: #FFC15A;
   --grad: linear-gradient(180deg, #FFD36B, #FF7A7A); --on: #2B0A4A; --glass-a: rgba(25,4,45,.66); --glass-b: rgba(25,4,45,.5); --rim: rgba(255,193,90,.65);
   --shadow: 0 0 28px rgba(255,95,143,.35); --glass-inset: inset 0 0 0 0 transparent; --blur: 10px; --bw: 1.5px;
@@ -143,6 +148,7 @@ html[data-theme="sunset"] {
    6. ACADEMIA
    ========================================================================== */
 html[data-theme="academia"] {
+  --logo-fill: linear-gradient(100deg, #E8C777, #C9A66B 50%, #9C7A2B);
   --bg: #1B1410; --ink: #EFE6D2; --mut: #B8A98F; --teal-ink: #C9A66B; --blue: #C9A66B;
   --grad: linear-gradient(#C9A66B, #C9A66B); --on: #1B1410; --glass-a: #241A14; --glass-b: #241A14; --rim: rgba(201,166,107,.7);
   --shadow: 0 10px 30px rgba(0,0,0,.4); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 3px; --bs: double;
@@ -164,6 +170,7 @@ html[data-theme="academia"] .btn, html[data-theme="academia"] .filters button, h
    7. CLAY CANDY
    ========================================================================== */
 html[data-theme="clay"] {
+  --logo-fill: linear-gradient(160deg, #FF9AD0, #D6358C);
   --bg: #FDE7F3; --ink: #3A2A5C; --mut: #7B6A9C; --teal-ink: #D6358C; --blue: #D6358C;
   --grad: linear-gradient(160deg, #FF9AD0, #FF5FA8); --on: #fff; --glass-a: #FFFFFF; --glass-b: #FFFFFF; --rim: rgba(255,255,255,.95);
   --shadow: 0 20px 34px rgba(255,111,181,.22); --glass-inset: inset 0 10px 16px rgba(255,255,255,.95), inset 0 -10px 16px rgba(58,42,92,.06); --blur: 0px; --bw: 2px;
@@ -180,6 +187,7 @@ html[data-theme="clay"] .filters button.on { box-shadow: inset 0 -4px 6px rgba(0
    8. GACETA
    ========================================================================== */
 html[data-theme="gaceta"] {
+  --logo-fill: #C8102E;
   --bg: #E9E9E4; --ink: #111; --mut: #444; --teal-ink: #C8102E; --blue: #C8102E;
   --grad: linear-gradient(#C8102E, #C8102E); --on: #fff; --glass-a: #F4F4F0; --glass-b: #F4F4F0; --rim: #111;
   --shadow: none; --glass-inset: inset 0 0 0 0 transparent; --blur: 0px; --bw: 1px;
@@ -199,6 +207,7 @@ html[data-theme="gaceta"] .top { border-bottom: 4px double #111; margin-bottom: 
    9. MATERIAL TONAL
    ========================================================================== */
 html[data-theme="material"] {
+  --logo-fill: #6750A4;
   --bg: #FEF7FF; --ink: #1D1B20; --mut: #49454F; --teal-ink: #6750A4; --blue: #6750A4;
   --grad: linear-gradient(#6750A4, #6750A4); --on: #fff; --glass-a: #F3EDF7; --glass-b: #F3EDF7; --rim: #CAC4D0;
   --shadow: 0 1px 3px rgba(0,0,0,.18); --glass-inset: inset 0 0 0 0 transparent; --blur: 0px;
@@ -214,6 +223,7 @@ html[data-theme="material"] {
    10. HUD COCKPIT
    ========================================================================== */
 html[data-theme="hud"] {
+  --logo-fill: #00D4FF;
   --bg: #05090D; --ink: #CFEFFF; --mut: #6FA0B8; --teal-ink: #00D4FF; --blue: #FF9B1F;
   --grad: linear-gradient(#FF9B1F, #FF9B1F); --on: #1A0E00; --glass-a: rgba(0,212,255,.06); --glass-b: rgba(0,212,255,.03); --rim: rgba(0,212,255,.55);
   --shadow: none; --glass-inset: inset 0 0 0 0 transparent; --blur: 6px; --bw: 1px;
@@ -233,4 +243,8 @@ html[data-theme="hud"] .tags span::before, html[data-theme="hud"] .filters butto
 .hu-c { width: 34px; height: 34px; border: 2px solid #00D4FF; opacity: .8; }
 .hu-c.tl { left: 10px; top: 46px; border-right: 0; border-bottom: 0; } .hu-c.tr { right: 10px; top: 46px; border-left: 0; border-bottom: 0; }
 .hu-c.bl { left: 10px; bottom: 10px; border-right: 0; border-top: 0; } .hu-c.br { right: 10px; bottom: 10px; border-left: 0; border-top: 0; }
-.hu-tele { left: 52px; top: 52px; font: 12px/1.7 'Share Tech Mono', monospace; color: #00D4FF; letter-spacing: .08em; white-space: pre; }
+.hu-tele { left: 22px; bottom: 80px; font: 12px/1.7 'Share Tech Mono', monospace; color: #00D4FF; letter-spacing: .08em; white-space: pre; }
+
+
+
+@media (max-width: 720px) { .ar-hud, .hu-tele { display: none; } }
