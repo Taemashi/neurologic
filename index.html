@@ -17,7 +17,7 @@
     --accent2: #22d3ee;
   }
   @media (prefers-color-scheme: light) {
-    :root { --bg:#f6f7fb; --surface:#fff; --border:#dfe3ee; --text:#161a26; --muted:#5b6578; }
+    :root { --inv:0; --bg:#f6f7fb; --surface:#fff; --border:#dfe3ee; --text:#161a26; --muted:#5b6578; }
   }
   * { box-sizing: border-box; margin: 0; }
   body { background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -26,8 +26,9 @@
 
   header.top { display:flex; justify-content:space-between; align-items:center; padding: 22px 0; }
   .brand { font-weight: 800; letter-spacing: .02em; font-size: 1.15rem; display:flex; align-items:center; gap:10px; }
-  .logo { display:block; width:170px; aspect-ratio:1949/393; background:var(--text); -webkit-mask:url(assets/logo-black.png) center/contain no-repeat; mask:url(assets/logo-black.png) center/contain no-repeat; }
-  .mark { width:46px; aspect-ratio:357/392; background:rgba(255,255,255,.35); -webkit-mask:url(assets/icon-black.png) center/contain no-repeat; mask:url(assets/icon-black.png) center/contain no-repeat; }
+  .logo { display:block; width:170px; height:auto; filter:invert(var(--inv,1)); }
+  .thumb img.mark { width:46px; height:auto; object-fit:contain; }
+  .mark { width:46px; height:auto; opacity:.35; filter:invert(1); }
   .dot { width:12px; height:12px; border-radius:50%; background: linear-gradient(135deg,var(--accent),var(--accent2)); }
   nav a { color: var(--muted); margin-left: 22px; font-size:.95rem; }
   nav a:hover { color: var(--text); }
@@ -66,7 +67,7 @@
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#" aria-label="Neurologic"><i class="logo"></i></a>
+    <a class="brand" href="#" aria-label="Neurologic"><img class="logo" src="assets/logo-black.png" alt="Neurologic"></a>
     <nav><a href="#proyectos">Proyectos</a><a href="#estudio">Estudio</a><a href="#contacto">Contacto</a></nav>
   </header>
 
@@ -139,7 +140,7 @@ function render() {
     c.className = "card";
     const thumb = p.image
       ? `<div class="thumb"><img src="${p.image}" alt="Captura de ${p.title}" loading="lazy"></div>`
-      : `<div class="thumb ph"><i class="mark"></i></div>`;
+      : `<div class="thumb ph"><img class="mark" src="assets/icon-black.png" alt=""></div>`;
     c.innerHTML = `${thumb}<div class="body"><h3>${p.title}</h3><p>${p.description}</p>
       <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
       <div class="links">
@@ -164,5 +165,7 @@ renderFilters(); render();
 </script>
 </body>
 </html>
+
+
 
 
