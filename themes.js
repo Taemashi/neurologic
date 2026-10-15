@@ -112,7 +112,7 @@
     var ht = div("ri-ht", bg);
     function circ(col) { var e = div("ri-c", bg); e.style.background = col; return e; }
     var c1 = circ("#FF5A1F"), c2 = circ("#1B2BD6"), c3 = circ("#FFD400"); c2.style.opacity = ".82";
-    var stamp = div("ri-stamp", fg, "HECHO<br>A MANO");
+    var stamp = div("ri-stamp", bg, "HECHO<br>A MANO");
     return function (S) {
       var m = Math.min(S.w, S.h), a = m * .56, b = m * .5, c = m * .34, p = S.p, v = clamp(S.v, -40, 40);
       c1.style.width = c1.style.height = a + "px"; c2.style.width = c2.style.height = b + "px"; c3.style.width = c3.style.height = c + "px";
@@ -325,6 +325,7 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
 
 
 

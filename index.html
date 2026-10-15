@@ -72,13 +72,13 @@
   .top nav a:hover { background: var(--surf); color: var(--ink); }
 
   /* hero */
-  .hero { position: relative; margin-top: 24px; padding: 56px 48px 52px; overflow: hidden; }
+  .hero { --mark-w: clamp(110px, 17vw, 210px); position: relative; margin-top: 24px; padding: 56px calc(var(--mark-w) + 72px) 52px 48px; overflow: hidden; }
   .hero .eb { font: 500 .78rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 16px; }
   .hero h1 { font: var(--dw) var(--h1)/var(--dlh) var(--display); letter-spacing: var(--dl); text-transform: var(--dt); max-width: 13em; text-wrap: balance; }
   .acc { color: var(--blue); }
   .hero p { margin-top: 18px; max-width: 46ch; color: var(--mut); font-size: 1.1rem; }
   .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .hero .mark { position: absolute; right: 48px; top: 40px; width: clamp(110px, 17vw, 210px); aspect-ratio: 357/392; background: var(--grad); -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; opacity: .95; }
+  .hero .mark { position: absolute; right: 48px; top: 40px; width: var(--mark-w); aspect-ratio: 357/392; background: var(--grad); -webkit-mask: url(assets/icon-black.png) center/contain no-repeat; mask: url(assets/icon-black.png) center/contain no-repeat; opacity: .95; }
   .btn { font: 700 .95rem var(--body); padding: 13px 24px; border-radius: var(--rad-btn); border: var(--bw) var(--bs) var(--rim); display: inline-block; transition: transform .2s, box-shadow .2s; }
   .btn:hover { transform: translateY(-2px); }
   .btn.p { background: var(--grad); color: var(--on); border-color: transparent; box-shadow: var(--btn-shadow); }
@@ -257,7 +257,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="helix.js?v=4"></script>
 <script src="wa.js"></script>
-<script src="themes.js?v=3"></script>
+<script src="themes.js?v=4"></script>
 <script>
 /* ============================================================
    AGREGA TUS PROYECTOS AQUÍ. Un bloque { ... } por proyecto.
@@ -370,6 +370,8 @@ renderFilters(); render();
 </script>
 </body>
 </html>
+
+
 
 
 
