@@ -7,7 +7,7 @@ const PACKAGES = {
     n: 1, name: "Esencial", file: "esencial.html",
     title: "Una página que presenta tu negocio y te trae clientes.",
     lead: "Una landing clara y rápida: quién eres, qué ofreces y cómo contactarte, lista en una semana.",
-    min: 700000, max: 1300000, usdMin: 175, usdMax: 325, from: false,
+    min: 450000, max: 850000, usdMin: 115, usdMax: 215, from: false,
     chips: ["1 página", "5 a 7 días", "Soporte 15 días"],
     forWho: "Emprendedores, profesionales independientes y negocios pequeños que aún no tienen página, o que solo tienen redes sociales.",
     result: "Un sitio propio que se ve profesional en el celular, que se encuentra en Google por tu nombre y que lleva a la gente directo a tu WhatsApp.",
@@ -48,7 +48,7 @@ const PACKAGES = {
     n: 2, name: "Profesional", file: "profesional.html",
     title: "Un sitio completo para tu empresa, con catálogo y presencia fuerte.",
     lead: "Varias páginas, catálogo de productos o servicios y todo lo necesario para que te encuentren y te compren.",
-    min: 2000000, max: 3800000, usdMin: 500, usdMax: 950, from: false,
+    min: 1300000, max: 2500000, usdMin: 325, usdMax: 625, from: false,
     chips: ["5 a 8 páginas", "2 a 3 semanas", "Soporte 30 días"],
     forWho: "Empresas y marcas que ya venden y necesitan mostrar su catálogo, sus servicios y su credibilidad en un solo lugar.",
     result: "Un sitio corporativo propio, con tu dominio, que se posiciona en Google y recibe pedidos por WhatsApp sin que tengas que explicar todo cada vez.",
@@ -89,7 +89,7 @@ const PACKAGES = {
     n: 3, name: "Tienda o a medida", file: "tienda.html",
     title: "Tu tienda en línea o una aplicación hecha para tu negocio.",
     lead: "Carrito, pagos, panel de administración y funciones propias. Es el tipo de proyecto de Dermix, Loop y reActiva.",
-    min: 5000000, max: null, usdMin: 1250, usdMax: null, from: true,
+    min: 3200000, max: null, usdMin: 800, usdMax: null, from: true,
     chips: ["4 a 8 semanas", "Cotización a medida", "Soporte 60 días"],
     forWho: "Marcas que quieren vender en línea las 24 horas, o equipos que necesitan una herramienta digital que no existe lista para usar.",
     result: "Una tienda o plataforma propia que cobra, organiza pedidos y crece con tu negocio, sin depender de comisiones de terceros.",
@@ -241,4 +241,6 @@ function render(id) {
 
   <footer><img src="../assets/logo-black.png" alt="Neurologic"><span>© ${new Date().getFullYear()} Neurologic. Todos los derechos reservados.</span></footer>`;
 }
+
+
 
