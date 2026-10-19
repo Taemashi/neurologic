@@ -266,3 +266,14 @@ html[data-theme="hud"] .tags span::before, html[data-theme="hud"] .filters butto
 @keyframes thbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (prefers-reduced-motion: reduce) { #tm.hint .tbtn, #tm.hint .thint { animation: none; } }
 @media (max-width: 899px), (hover: none) { #tm .thint { display: none; } }
+
+/* tabla de planes: ajustes para tipografías muy anchas */
+html[data-theme="arcade"] .cmp .nm { font-size: .8rem; }
+html[data-theme="arcade"] .cmp .cop { font-size: .78rem; line-height: 1.5; }
+html[data-theme="arcade"] .cmp .usd { font-size: 1.15rem; }
+html[data-theme="arcade"] .cmp .tl, html[data-theme="arcade"] .cmp th.row { font-size: 1.05rem; }
+html[data-theme="arcade"] .cmp .ask a { font: 700 .62rem 'Silkscreen', monospace; }
+html[data-theme="chrome"] .cmp .nm { font-size: .78rem; }
+html[data-theme="chrome"] .cmp .cop { font-size: .92rem; }
+html[data-theme="hud"] .cmp .cop, html[data-theme="hud"] .cmp .nm { letter-spacing: .02em; }
+html[data-theme="arcade"] .cmp .usd, html[data-theme="arcade"] .cmp td.txt { font-weight: 400; }

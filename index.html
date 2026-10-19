@@ -128,7 +128,40 @@
   .links { display: flex; gap: 10px; margin-top: 6px; }
   .links .btn { padding: 10px 18px; font-size: .88rem; }
 
-  /* servicios */
+
+  /* planes: tabla comparativa */
+  .cmp { margin-top: 22px; overflow-x: auto; padding: 4px 6px 8px; -webkit-overflow-scrolling: touch; }
+  .cmp table { width: 100%; min-width: 960px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+  .cmp thead th:first-child, .cmp th.row { width: 27%; }
+  .cmp th, .cmp td { padding: 11px 10px; text-align: center; border-bottom: 1px solid rgba(128,128,128,.22); }
+  .cmp thead th { vertical-align: top; padding: 20px 10px 16px; border-bottom: 2px solid rgba(128,128,128,.35); font-weight: 400; }
+  .cmp thead th:first-child, .cmp th.row { text-align: left; position: sticky; left: 0; z-index: 2; background: color-mix(in srgb, var(--bg) 94%, transparent); }
+  .cmp thead th:first-child { font: 500 .78rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mut); vertical-align: bottom; min-width: 250px; }
+  .cmp th.row { font: 500 .92rem var(--body); color: var(--ink); padding-left: 14px; min-width: 250px; max-width: 300px; }
+  .cmp .pn { display: block; font: 500 .66rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-ink); }
+  .cmp .nm { display: block; font: var(--dw) 1.08rem var(--display); text-transform: var(--dt); letter-spacing: var(--dl); margin-top: 2px; }
+  .cmp .tl { display: block; font: 500 .8rem var(--body); color: var(--mut); margin: 3px 0 12px; }
+  .cmp .from { display: block; font: 500 .64rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mut); }
+  .cmp .cop { display: block; font: var(--dw) 1.12rem var(--display); background: var(--price-grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.25; }
+  .cmp .usd { display: block; font: 700 .92rem var(--body); color: var(--ink); margin-top: 3px; }
+  .cmp .cur { display: block; font: 500 .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
+  .cmp .ask { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 12px; }
+  .cmp .ask a { font: 700 .7rem var(--body); padding: 6px 10px; border-radius: var(--rad-chip); border: var(--bw) var(--bs) var(--rim); background: var(--surf2); color: var(--ink); white-space: nowrap; min-width: 98px; text-align: center; transition: transform .15s; }
+  .cmp .ask a:hover { transform: translateY(-2px); }
+  .cmp .ask a.p { background: var(--grad); color: var(--on); border-color: transparent; }
+  .cmp tr.grp td { background: var(--surf); text-align: left; font: 700 .74rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--teal-ink); padding: 11px 14px; border-bottom: 1px solid rgba(128,128,128,.22); }
+  .cmp tr.grp td small { font: 500 .78rem var(--body); letter-spacing: 0; text-transform: none; color: var(--mut); margin-left: 8px; }
+  .cmp td.txt { font: 700 .86rem var(--body); color: var(--ink); }
+  .cmp .ck { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--grad); }
+  .cmp .ck svg { width: 12px; height: 12px; stroke: var(--on); fill: none; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+  .cmp .no { color: var(--mut); opacity: .45; font-size: 1.1rem; }
+  .cmp tbody tr:last-child td, .cmp tbody tr:last-child th { border-bottom: 0; }
+  .cmp tfoot td, .cmp tfoot th { border-bottom: 0; border-top: 2px solid rgba(128,128,128,.35); padding-top: 16px; }
+  .cmp-hint { display: none; margin-top: 14px; font: 500 .8rem var(--mono); color: var(--teal-ink); }
+  .cmp-note { margin-top: 14px; font-size: .86rem; color: var(--mut); max-width: 80ch; }
+  @media (max-width: 960px) { .cmp-hint { display: block; } .cmp table { min-width: 880px; } .cmp thead th:first-child, .cmp th.row { width: 138px; min-width: 138px; max-width: 138px; font-size: .8rem; padding-left: 10px; } .cmp thead th:first-child { font-size: .66rem; } }
+
+  /* servicios (antiguo) */
   .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 24px; }
   .plan { padding: 28px; display: flex; flex-direction: column; gap: 10px; transition: transform .25s; }
   .plan:hover { transform: translateY(-5px); }
@@ -165,7 +198,7 @@
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
-<link rel="stylesheet" href="themes.css?v=6">
+<link rel="stylesheet" href="themes.css?v=8">
 </head>
 <body>
 <div class="tick" id="tick" aria-hidden="true"></div>
@@ -175,7 +208,7 @@
 <div class="wrap">
   <header class="top">
     <a href="#" aria-label="Neurologic, inicio"><span class="logo" role="img" aria-label="Neurologic"></span></a>
-    <nav aria-label="Principal"><a href="#proyectos">Proyectos</a><a href="#servicios">Servicios</a><a href="#estudio">Estudio</a><a href="#contacto">Contacto</a></nav>
+    <nav aria-label="Principal"><a href="#proyectos">Proyectos</a><a href="#servicios">Planes</a><a href="#estudio">Estudio</a><a href="#contacto">Contacto</a></nav>
   </header>
 
   <section class="hero glass">
@@ -183,7 +216,18 @@
     <div class="eb">Estudio de desarrollo de software</div>
     <h1>Software con <span class="acc">lógica</span> y criterio.</h1>
     <p>Somos Neurologic. Diseñamos y construimos tiendas en línea, aplicaciones web y herramientas a la medida.</p>
-    <div class="cta"><a class="btn p" href="#proyectos">Ver proyectos</a><a class="btn s" href="#contacto">Hablemos</a></div>
+    <div class="cta"><a class="btn p" href="#servicios">Ver planes y precios</a><a class="btn s" href="#proyectos">Ver proyectos</a></div>
+  </section>
+
+  <!-- Planes: edita PLANS y FEATS en el script de abajo -->
+  <section class="block" id="servicios">
+    <h2>Planes y precios</h2>
+    <p class="sub">Cinco planes, de menor a mayor. Cada plan incluye todo lo del anterior. Precios en pesos colombianos (COP) y en dólares (USD).</p>
+    <p class="cmp-hint" aria-hidden="true">Desliza para ver todos los planes →</p>
+    <div class="cmp glass" role="region" aria-label="Comparación de los cinco planes" tabindex="0">
+      <table id="cmp"></table>
+    </div>
+    <p class="cmp-note">Precios de referencia por plan: "Desde" indica el valor inicial. La propuesta final se entrega por escrito después de conocer tu proyecto. Servicios de terceros (dominio después del primer año, pasarelas de pago, WhatsApp Business API y el uso de la IA) pueden tener costos propios que se cotizan aparte.</p>
   </section>
 
   <section class="block" id="proyectos">
@@ -191,32 +235,6 @@
     <p class="sub">Páginas y aplicaciones que hemos construido, publicadas y funcionando.</p>
     <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
     <div class="grid" id="grid"></div>
-  </section>
-
-  <!-- Precios: mantenerlos iguales a los de paquetes/pkg.js -->
-  <section class="block" id="servicios">
-    <h2>Servicios y precios</h2>
-    <p class="sub">Tres paquetes según lo que necesite tu negocio. Cada uno tiene su página con todo explicado.</p>
-    <div class="plans">
-      <a class="plan glass" href="paquetes/esencial.html">
-        <span class="pn">Paquete 1</span><h3>Esencial</h3>
-        <p>Una página que presenta tu negocio, con WhatsApp y SEO básico.</p>
-        <div class="pp"><b>$450.000 a $850.000</b><small>COP · pesos colombianos</small><b class="u">US$115 a US$215</b><small>USD · aprox.</small></div>
-        <span class="more">Ver qué incluye</span>
-      </a>
-      <a class="plan glass feat" href="paquetes/profesional.html">
-        <span class="pn">Paquete 2 · Recomendado</span><h3>Profesional</h3>
-        <p>Sitio de empresa con 5 a 8 páginas, catálogo y dominio propio.</p>
-        <div class="pp"><b>$1.300.000 a $2.500.000</b><small>COP · pesos colombianos</small><b class="u">US$325 a US$625</b><small>USD · aprox.</small></div>
-        <span class="more">Ver qué incluye</span>
-      </a>
-      <a class="plan glass" href="paquetes/tienda.html">
-        <span class="pn">Paquete 3</span><h3>Tienda o a medida</h3>
-        <p>Tienda en línea con pagos, panel de administración y funciones propias.</p>
-        <div class="pp"><b>Desde $3.200.000</b><small>COP · pesos colombianos</small><b class="u">Desde US$800</b><small>USD · aprox.</small></div>
-        <span class="more">Ver qué incluye</span>
-      </a>
-    </div>
   </section>
 
   <section class="block" id="estudio">
@@ -365,11 +383,61 @@ function renderFilters() {
     filters.appendChild(b);
   });
 }
+
+/* ============================================================
+   PLANES Y PRECIOS. Edita aquí: nombre, frase, precio y qué incluye.
+   cop / usd son el precio inicial ("Desde"). Cada plan incluye los del anterior.
+   ============================================================ */
+const PLANS = [
+  { name: "Presencia",    tag: "Que me encuentren",            cop: "$450.000",   usd: "US$115" },
+  { name: "Vitrina",      tag: "Que vean mi producto",         cop: "$1.300.000", usd: "US$325" },
+  { name: "Tienda",       tag: "Que me compren en línea",      cop: "$3.200.000", usd: "US$800" },
+  { name: "Tienda Pro",   tag: "Que vendan más y trabajen menos", cop: "$5.600.000", usd: "US$1.400" },
+  { name: "Tienda con IA", tag: "Que el negocio atienda solo", cop: "$9.000.000", usd: "US$2.250" }
+];
+// "from" = primer plan (1 a 5) que incluye cada función
+const FEATS = [
+  { title: "Tamaño de tu página", text: ["Una sola sección", "4 a 5 secciones", "Tienda completa", "Tienda completa", "Tienda completa"] },
+  { title: "Presencia", sub: "Lo básico para que te encuentren", from: 1, items: [
+    "Diseño adaptado a celular y computador", "Botón de WhatsApp", "Enlaces a Instagram y Facebook", "Ubicación en Google Maps", "Dominio y hosting el primer año" ] },
+  { title: "Vitrina", sub: "Para mostrar tus productos", from: 2, items: [
+    "Catálogo de productos con fotos", "Botón \"pedir por WhatsApp\" en cada producto", "SEO local básico (Google Business Profile)", "Formulario de contacto" ] },
+  { title: "Tienda", sub: "Para vender en línea", from: 3, items: [
+    "Carrito de compras", "Pasarela de pagos colombiana (Wompi, MercadoPago, PayU)", "Gestión de inventario", "Tallas y colores como variantes", "Panel para que edites tus productos" ] },
+  { title: "Tienda Pro", sub: "Para vender más con menos trabajo", from: 4, items: [
+    "Chatbot de preguntas frecuentes (horarios, tallas, envíos, disponibilidad)", "Integración con WhatsApp Business API", "Correos de carrito abandonado", "Analítica y reportes mensuales", "Cupones y promociones" ] },
+  { title: "Tienda con IA", sub: "Para que el negocio atienda solo", from: 5, items: [
+    "Agente de IA que responde en WhatsApp, Instagram y web", "Recomienda productos según lo que pide el cliente", "Concreta ventas: genera el pedido y el link de pago", "Agenda citas (probadores, asesoría de imagen, ajustes)", "Pasa la conversación a una persona cuando hace falta" ] }
+];
+const CHECK = '<span class="ck" role="img" aria-label="Incluido"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
+const NO = '<span class="no" role="img" aria-label="No incluido">\u2013</span>';
+function waPlan(num, name) { return "https://wa.me/" + num + "?text=" + encodeURIComponent("Hola Neurologic, me interesa el plan " + name + "."); }
+function askBtns(pl) {
+  return '<span class="ask"><a class="p" href="' + waPlan("573229269521", pl.name) + '" target="_blank" rel="noopener">Colombia</a><a href="' + waPlan("584167760728", pl.name) + '" target="_blank" rel="noopener">Venezuela</a></span>';
+}
+function renderPlans() {
+  const el = document.getElementById("cmp"); if (!el) return;
+  let h = '<thead><tr><th scope="col">Compara los planes</th>' + PLANS.map((pl, i) =>
+    '<th scope="col"><span class="pn">Plan ' + (i + 1) + '</span><span class="nm">' + esc(pl.name) + '</span><span class="tl">' + esc(pl.tag) + '</span>' +
+    '<span class="from">Desde</span><span class="cop">' + esc(pl.cop) + '</span><span class="cur">COP</span><span class="usd">' + esc(pl.usd) + '</span><span class="cur">USD aprox.</span>' + askBtns(pl) + '</th>').join("") + '</tr></thead><tbody>';
+  FEATS.forEach(g => {
+    if (g.text) { h += '<tr><th class="row" scope="row">' + esc(g.title) + '</th>' + g.text.map(x => '<td class="txt">' + esc(x) + '</td>').join("") + '</tr>'; return; }
+    h += '<tr class="grp"><td colspan="6">' + esc(g.title) + '<small>' + esc(g.sub) + '</small></td></tr>';
+    g.items.forEach(it => { h += '<tr><th class="row" scope="row">' + esc(it) + '</th>' + PLANS.map((_, i) => '<td>' + (i + 1 >= g.from ? CHECK : NO) + '</td>').join("") + '</tr>'; });
+  });
+  h += '</tbody><tfoot><tr><th class="row" scope="row">Pídelo por WhatsApp</th>' + PLANS.map(pl => '<td>' + askBtns(pl) + '</td>').join("") + '</tr></tfoot>';
+  el.innerHTML = h;
+}
+renderPlans();
 document.getElementById("y").textContent = new Date().getFullYear();
 renderFilters(); render();
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
