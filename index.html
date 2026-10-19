@@ -411,21 +411,17 @@ const FEATS = [
 ];
 const CHECK = '<span class="ck" role="img" aria-label="Incluido"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
 const NO = '<span class="no" role="img" aria-label="No incluido">\u2013</span>';
-function waPlan(num, name) { return "https://wa.me/" + num + "?text=" + encodeURIComponent("Hola Neurologic, me interesa el plan " + name + "."); }
-function askBtns(pl) {
-  return '<span class="ask"><a class="p" href="' + waPlan("573229269521", pl.name) + '" target="_blank" rel="noopener">Colombia</a><a href="' + waPlan("584167760728", pl.name) + '" target="_blank" rel="noopener">Venezuela</a></span>';
-}
 function renderPlans() {
   const el = document.getElementById("cmp"); if (!el) return;
   let h = '<thead><tr><th scope="col">Compara los planes</th>' + PLANS.map((pl, i) =>
     '<th scope="col"><span class="pn">Plan ' + (i + 1) + '</span><span class="nm">' + esc(pl.name) + '</span><span class="tl">' + esc(pl.tag) + '</span>' +
-    '<span class="from">Desde</span><span class="cop">' + esc(pl.cop) + '</span><span class="cur">COP</span><span class="usd">' + esc(pl.usd) + '</span><span class="cur">USD aprox.</span>' + askBtns(pl) + '</th>').join("") + '</tr></thead><tbody>';
+    '<span class="from">Desde</span><span class="cop">' + esc(pl.cop) + '</span><span class="cur">COP</span><span class="usd">' + esc(pl.usd) + '</span><span class="cur">USD aprox.</span></th>').join("") + '</tr></thead><tbody>';
   FEATS.forEach(g => {
     if (g.text) { h += '<tr><th class="row" scope="row">' + esc(g.title) + '</th>' + g.text.map(x => '<td class="txt">' + esc(x) + '</td>').join("") + '</tr>'; return; }
     h += '<tr class="grp"><td colspan="6">' + esc(g.title) + '<small>' + esc(g.sub) + '</small></td></tr>';
     g.items.forEach(it => { h += '<tr><th class="row" scope="row">' + esc(it) + '</th>' + PLANS.map((_, i) => '<td>' + (i + 1 >= g.from ? CHECK : NO) + '</td>').join("") + '</tr>'; });
   });
-  h += '</tbody><tfoot><tr><th class="row" scope="row">Pídelo por WhatsApp</th>' + PLANS.map(pl => '<td>' + askBtns(pl) + '</td>').join("") + '</tr></tfoot>';
+  h += '</tbody>';
   el.innerHTML = h;
 }
 renderPlans();
@@ -434,6 +430,7 @@ renderFilters(); render();
 </script>
 </body>
 </html>
+
 
 
 
